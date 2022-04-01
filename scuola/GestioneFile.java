@@ -1,20 +1,22 @@
 /**
  * Classe libreria GestioneFile 
- */
-package scuola;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-/**
+ *
  * Classe di libreria GestioneFile.java
  * Contiene i metodi per "importare" i dati di segreteria
  * 
  * @author nunzio.galati
  * @version 1.0
  */
-public class GestioneFile {
+
+package scuola;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+public class GestioneFile 
+{
     
     /**
      * Importa l'elenco delle classi da un file di testo e li carica in un array
@@ -23,10 +25,11 @@ public class GestioneFile {
      * @return il numero delle classi lette dal file
      * @throws FileNotFoundException 
      */
-    public static int leggiClassi(String nomeFile, Classe[] classi) throws FileNotFoundException, IOException {
+    public static int leggiClassi(String nomeFile, Classe[] classi) throws FileNotFoundException, IOException 
+    {
         
         BufferedReader br = null;
-	String riga = "";
+	    String riga = "";
         
         // Carico le classi dal file
         int i=0;

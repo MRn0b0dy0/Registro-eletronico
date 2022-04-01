@@ -2,61 +2,73 @@
  * Gestione di una segreteria didattica
  * Classe 4A, 2022
  */
-package scuola;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Set;
-
-import javax.print.attribute.SupportedValuesAttribute;
-
 /**
  * Classe applicazione
  * @author classe 4A
  */
+
+package scuola;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+
 public class Scuola {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
-        // TODO code application logic here       
-        final int MAX_CLASSI = 20;
-               
+    public static void main(String[] args) 
+    {        
+        final int MAX_CLASSI = 20;               
         Classe[] classiFormate = new Classe[MAX_CLASSI];  
         PercorsoDidattico[] percorsi = new PercorsoDidattico[MAX_CLASSI];
-        
+
         /**** importa dati segreteria   *****/
         //crea l'elenco delle classi formate 
         int numeroClassi=0;
-        try {
+        try 
+        {
             numeroClassi = GestioneFile.leggiClassi("classi.csv", classiFormate);
-        } catch (FileNotFoundException e) {
+        } 
+        catch (FileNotFoundException e) 
+        {
             Video.scriviStringa("File on trovato!"); Video.aCapo();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
             Video.scriviStringa("Errore di accesso al file"); Video.aCapo();
         }
+        
         //carica percorsi didattici (indirizzi e relativi PIANI DI STUDIO) 
         int numPercorsi=0;
-        try{
-            numPercorsi=GestioneFile.leggiPercorsiDidattici("percorsi.csv",percorsi);
-        } catch (FileNotFoundException e) {
+        
+        try
+        {
+            numPercorsi = GestioneFile.leggiPercorsiDidattici("percorsi.csv",percorsi);
+        }
+        catch (FileNotFoundException e) 
+        {
             Video.scriviStringa("Errore! File non trovato!\n");
-        } catch (IOException e){
+        } 
+        catch (IOException e)
+        {
             Video.scriviStringa("Errore nella lettura del file!\n");
         }
+
         //imposta percorsi per ogni classe
         boolean trovato;
-        for(int i=0; i<numeroClassi; i++){
-            trovato=false;
-            for(int j=0; j<numPercorsi && !trovato; j++)
-                if(classiFormate[i].getPercorso().equals(percorsi[j])) {
+        for(int i = 0; i < numeroClassi; i++)
+        {
+            trovato = false;
+            for(int j = 0; j < numPercorsi && !trovato; j++)
+                if(classiFormate[i].getPercorso().equals(percorsi[j])) 
+                {
                    classiFormate[i].getPercorso().setMaterie(percorsi[j].getMaterie(),percorsi[j].getNumeroMaterie());
-                   trovato=true;
+                   trovato = true;
                 }
         }     
             
+
         //Visulizza dati anno scolastico corrente importati dalla segreteria 
         /*Video.scriviStringa("Piani di studio dell'offerta formativa: "); Video.aCapo();
         for(int i=0; i<numPercorsi; i++) {
@@ -70,144 +82,269 @@ public class Scuola {
         Video.aCapo();
 
         //mostra menu  
-	char scelta=' ';
-		
-	do {
-            Video.scriviStringa("\n\n        *** GESTIONE SEGRETERIA DIDATTICA ***\n\n");
-            Video.scriviStringa("              I - ISCRIVI nuovo studente\n");
-            Video.scriviStringa("              C - CAMBIA classe\n");
-            Video.scriviStringa("              V - VISUALIZZA classe\n");
-            Video.scriviStringa("              R - CERCA studente\n");
-            Video.scriviStringa("              F - FORMAZIONE classi\n");
-            Video.scriviStringa("              X - FINE\n\n");
-			
-            Video.scriviStringa("              Scelta => ");
+        char scelta=' ';
             
-            boolean scelta_ok=false;
-            do {
-                try {
-                    scelta = Tastiera.leggiCarattere();
-                    scelta_ok = true;
-                } catch (IOException e) {
-                    Video.scriviStringa("Scelta non valida!!!");
-                }
-            } while(!scelta_ok);
-            
-            switch(scelta) {
-		case 'i':
-		case 'I': //ISCRIVI studente e assegnalo ad una classe
-                    {
-                        try {
-                            Video.scriviStringa("Iserisci anagrafica\n"); 
-                            Video.scriviStringa("Cognome? "); 
-                            String cognome = Tastiera.leggiStringa();
-                            Video.scriviStringa("Nnome? "); 
-                            String nome = Tastiera.leggiStringa();
-                            Video.scriviStringa("Sesso? "); 
-                            char sesso = Tastiera.leggiCarattere();
-                            Video.scriviStringa("giorno nascita? "); 
-                            int gg = Tastiera.leggiIntero();
-                            Video.scriviStringa("mese nascita? "); 
-                            int mm = Tastiera.leggiIntero();
-                            Video.scriviStringa("anno nascita? "); 
-                            int aaaa = Tastiera.leggiIntero();
-                            Video.scriviStringa("CF? "); 
-                            String cf = Tastiera.leggiStringa();
-                            
-                            Studente nuovo = new Studente(cf, cognome, nome, sesso, gg, mm, aaaa);
-                            
-                            Video.scriviStringa("In quale classe?");
-                            int cla = Tastiera.leggiIntero();
-                            Video.scriviStringa("In quale sezione?");
-                            char sez = Tastiera.leggiCarattere();
-                            
-                            boolean trovata=false;
-                            for (int i=0; i<numeroClassi && !trovata; i++) {
-                                if (classiFormate[i].equals(cla, sez)) {
-                                    trovata=true;    
-                                    classiFormate[i].aggiungi(nuovo);
-                                }
-                            }
-                            if (!trovata) {
-                                Video.scriviStringa("Classe non formata!");
-                            }                           
-                        } catch (Exception e) {
-                            Video.scriviStringa("Errore di input!");
-                        }
-                    break;
-                    }	
-                case 'c': 
-                case 'C': //funzionalita' per gestire il trasferimento di un alunno in altra classe 
-                    
-                    break;
+        do {
+                Video.scriviStringa("\n\n        *** GESTIONE SEGRETERIA DIDATTICA ***\n\n");
+                Video.scriviStringa("              I - ISCRIVI nuovo studente\n");
+                Video.scriviStringa("              C - CAMBIA classe\n");
+                Video.scriviStringa("              V - VISUALIZZA classe\n");
+                Video.scriviStringa("              R - CERCA studente\n");
+                Video.scriviStringa("              F - FORMAZIONE classi\n");
+                Video.scriviStringa("              X - FINE\n\n");
+                
+                Video.scriviStringa("              Scelta => ");
+                
+                boolean scelta_ok = false;
 
-		
-                case 'v':
-		case 'V': //VISUALIZZA elenco degli studenti di una data classe, con cognome, nome
-                    {     
-                        try {
-                            Video.scriviStringa("Classe?");
-                            int cla = Tastiera.leggiIntero();
-                            Video.scriviStringa("Sezione?");
-                            char sez = Tastiera.leggiCarattere();
-                            boolean trovata=false;
-                            for (int i=0; i<numeroClassi && !trovata; i++) {
-                                if (classiFormate[i].equals(cla, sez)) {
-                                    trovata=true;    
-                                    Set<Studente> elenco = classiFormate[i].getElenco();
-                                    Video.scriviStringa(classiFormate[i].toString());
-                                }
-                            }
-                            if (!trovata) {
-                                Video.scriviStringa("Classe non formata!");
-                            }      
-                        } catch (Exception e) {
-                            Video.scriviStringa("Errore di input!");
-                        }            
-                    break;
-                    }
-                case 'r':
-		case 'R': 
-        try {
-            Video.scriviStringa("Inserisci matricola dello studente da ricercare: ");
-            int matricola = Tastiera.leggiIntero();
-            trovato=false;
-            for (int i=0; i<numeroClassi && !trovato; i++) 
-            {   
-                Studente s = classiFormate[i].getStudenteDaMatricola(matricola);    
-                if (s != null)
+                do 
                 {
-                    Video.scriviStringa(s.toString());
-                    trovato=true;
-                }
-            }
-            if(!trovato) {
-                Video.scriviStringa("Studente non trovato!");
-            }
-        }
-         catch (Exception e) { 
-            Video.scriviStringa("Errore di input!");
-        }
+                    try 
+                    {
+                        scelta = Tastiera.leggiCarattere();
+                        scelta_ok = true;
+                    } 
+                    catch (IOException e) 
+                    {
+                        Video.scriviStringa("Scelta non valida!!!");
+                    }
+                } while(!scelta_ok);
+                
+                switch(scelta) {
+                    case 'i':
+                    case 'I': //ISCRIVI studente e assegnalo ad una classe
+                                {
+                                    try 
+                                    {
+                                        Video.scriviStringa("Iserisci anagrafica\n"); 
+                                        Video.scriviStringa("Cognome? "); 
+                                        String cognome = Tastiera.leggiStringa();
+                                        Video.scriviStringa("Nome? "); 
+                                        String nome = Tastiera.leggiStringa();
+                                        Video.scriviStringa("Sesso? "); 
+                                        char sesso = Tastiera.leggiCarattere();
+                                        Video.scriviStringa("giorno nascita? "); 
+                                        int gg = Tastiera.leggiIntero();
+                                        Video.scriviStringa("mese nascita? "); 
+                                        int mm = Tastiera.leggiIntero();
+                                        Video.scriviStringa("anno nascita? "); 
+                                        int aaaa = Tastiera.leggiIntero();
+                                        Video.scriviStringa("CF? "); 
+                                        String cf = Tastiera.leggiStringa();
+                                        
+                                        Studente nuovo = new Studente(cf, cognome, nome, sesso, gg, mm, aaaa);
+                                        
+                                        Video.scriviStringa("In quale classe?");
+                                        int cla = Tastiera.leggiIntero();
+                                        Video.scriviStringa("In quale sezione?");
+                                        char sez = Tastiera.leggiCarattere();
+                                        
+                                        boolean trovata=false;
 
-                    break;
+                                        for (int i=0; i<numeroClassi && !trovata; i++) 
+                                        {
+                                            if (classiFormate[i].equals(cla, sez)) 
+                                            {
+                                                trovata=true;    
+                                                classiFormate[i].aggiungi(nuovo);
+                                            }
+                                        }
+                                        if (!trovata) 
+                                        {
+                                            Video.scriviStringa("Classe non formata!");
+                                        }                           
+                                    }
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!");
+                                    }
+                                break;
+                                }	
 
-                case 'f':
-		case 'F': //Visualizza la composizione di tutte le classi
+                            case 'c': 
+                            case 'C': //funzionalita' per gestire il trasferimento di un alunno in altra classe 
+                                {
+                                    try
+                                    {
+                                        Video.scriviStringa("\nInserire la matricola del studente da trasferire:");
+                                        int matricola = Tastiera.leggiIntero();
+                                        Video.scriviStringa("\nInserire la nuova classe:");
+                                        int nuovaClasse = Tastiera.leggiIntero();
+                                        Video.scriviStringa("\nInserire la nuova sezione:");
+                                        char nuovaSezione = Tastiera.leggiCarattere();
+                                        Studente s = new Studente("", "", "", ' ', 0, 0, 0);
+                                        Classe c = new Classe(0, ' ', "");
 
-                    break;
+                                        trovato = false;
 
-                 case 'x': 
-		case 'X': 
-		
-                    break;
-                    
-                default:  Video.scriviStringa("ERRORE I/O: Scelta impropria!");		  
-            }
-			
-	} while(scelta!='X' && scelta!='x');
+                                        for(int i = 0; i < numeroClassi && !trovato; i++) 
+                                        {
+                                            s = classiFormate[i].getStudenteDaMatricola(matricola);    
+                                            if (s != null)
+                                            {
+                                                c = classiFormate[i];
+                                                trovato = true;
+                                            }                                            
+                                        }
+                                        
+                                        if(trovato)
+                                        {
+                                            trovato = false;
+                                            for(int i = 0; i < numeroClassi && !trovato; i++) 
+                                            {
+                                                if(classiFormate[i].equals(nuovaClasse, nuovaSezione))
+                                                {
+                                                    classiFormate[i].aggiungi(s);
+                                                    trovato = true;
+                                                }
+                                            }
+
+                                            if(trovato)
+                                            {
+                                                c.rimuovi(s);
+                                                Video.scriviStringa("\t\tInserimento riuscito!\n");
+                                            }
+                                            else
+                                            {
+                                                Video.scriviStringa("\t\t\tLa nuova classe non esiste!\n");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Video.scriviStringa("\t\t\tLo studente non esiste!\n");
+                                        }
+
+                                    }
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!");
+                                    }
+
+                                    break;
+                                }
+
+                            case 'v':
+                            case 'V': //VISUALIZZA elenco degli studenti di una data classe, con cognome, nome
+                                {     
+                                    try {
+                                        Video.scriviStringa("Classe?");
+                                        int cla = Tastiera.leggiIntero();
+                                        Video.scriviStringa("Sezione?");
+                                        char sez = Tastiera.leggiCarattere();
+                                        
+                                        boolean trovata=false;
+                                        
+                                        for (int i=0; i<numeroClassi && !trovata; i++) 
+                                        {
+                                            if (classiFormate[i].equals(cla, sez)) 
+                                            {
+                                                trovata = true;    
+                                                Video.scriviStringa(classiFormate[i].toString());
+                                            }
+                                        }
+                                        if (!trovata) 
+                                        {
+                                            Video.scriviStringa("Classe non formata!");
+                                        }      
+                                    } 
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!");
+                                    }            
+                                    break;
+                                }
+
+                            case 'r':
+                            case 'R': //Cerca gli studenti in base alla matricola o al nome e cognome
+                                {
+                                    try 
+                                    {
+                                        Video.scriviStringa("\nCerca studente per matricola o nome e cognome? \n");
+                                        Video.scriviStringa("Inserisci M per matricola o N per nome e cognome: ");
+                                        char scelta_ricerca = Tastiera.leggiCarattere();
+                                        
+                                        if(scelta_ricerca == 'm' || scelta_ricerca == 'M') 
+                                        {
+                                            Video.scriviStringa("Matricola? ");
+                                            int matricola = Tastiera.leggiIntero();
+
+                                            trovato = false;
+
+                                            for(int i = 0; i < numeroClassi && !trovato; i++) 
+                                            {
+                                                Studente s = classiFormate[i].getStudenteDaMatricola(matricola);    
+                                                if (s != null)
+                                                {
+                                                    Video.scriviStringa(s.toString());
+                                                    trovato=true;
+                                                }                                            
+                                            }
+                                            
+                                            if(!trovato) 
+                                            {
+                                                Video.scriviStringa("Studente non trovato!");
+                                            }
+                                        }
+                                        else if(scelta_ricerca == 'n' || scelta_ricerca == 'N') 
+                                        {
+                                            Video.scriviStringa("Nome? ");
+                                            String nome = Tastiera.leggiStringa();
+                                            Video.scriviStringa("Cognome? ");
+                                            String cognome = Tastiera.leggiStringa();
+                                            int maches = 0;
+                                            trovato = false;
+
+                                            for(int i = 0; i < numeroClassi; i++) 
+                                            {
+                                                int pos = classiFormate[i].getPosizione(new Studente(" ", cognome, nome));
+                                                if (pos != -1) 
+                                                {
+                                                    maches++;
+                                                    Video.scriviStringa(maches + ": " + classiFormate[i].getStudente(pos).toString());
+                                                    trovato=true;
+                                                }
+                                            }
+
+                                            if(!trovato) 
+                                            {
+                                                Video.scriviStringa("Studente non trovato!");
+                                            }
+                                        }
+                                        else 
+                                        {
+                                            Video.scriviStringa("Scelta non valida!");
+                                        }
+                                    }
+                                    catch (Exception e) 
+                                    { 
+                                        Video.scriviStringa("Errore di input!");
+                                    }
+
+                                    break;
+                                }
+
+                            case 'f':
+                            case 'F': //Visualizza la composizione di tutte le classi
+                                {
+                                    for(int i = 0; i < numeroClassi; i++) 
+                                    {
+                                        Video.scriviStringa(classiFormate[i].toString());
+                                    }
+                                    break;
+                                }
+
+                            case 'x': 
+                            case 'X': 
+                                {
+                                    break;
+                                }
+                            
+                            default:  Video.scriviStringa("ERRORE I/O: Scelta impropria!");		  
+                        }
+                
+        } while(scelta != 'X' && scelta != 'x');
 	 	 
-	Video.scriviStringa("\nBuon lavoro  ... "); 
+	    Video.scriviStringa("\nBuon lavoro  ... "); 
     } 
-    
 }
 

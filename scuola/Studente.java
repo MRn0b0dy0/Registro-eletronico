@@ -3,20 +3,13 @@
  * @author Serrone Fabio
  * Classe studente: implementà l'entità studente
  * */
-package scuola;
 
+package scuola;
 import java.util.GregorianCalendar;
 
-public class Studente extends Utente { // implements Comparable {
-    
-    private static int studentiIscritti = 0;
-    
-    private Genitore parentela[];
-    private Classe classe; 
-    private Pagella pagella;   
-    private int matricola;
-    private boolean rappresentante;
-    
+                                                        /*PAGELLA*/
+public class Studente extends Utente {//implements Comparable<Studente> { 
+        
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
@@ -28,9 +21,9 @@ public class Studente extends Utente { // implements Comparable {
      * 
      *Costruttore partendo dal codice fiscale e dal nome, sesso e data di nascita come oggetto @see <a href= "https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html", richiama il costruttore della classe base.
      */
-    public Studente(String codiceFiscale, String cognome, String nome, char sesso, GregorianCalendar data_nascita) {
+    public Studente(String codiceFiscale, String cognome, String nome, char sesso, GregorianCalendar data_nascita) 
+    {
         super(codiceFiscale, cognome, nome, sesso, data_nascita);
-        //this.matricola=++Studente.studentiIscritti; NO
     }
 
     /**
@@ -46,7 +39,8 @@ public class Studente extends Utente { // implements Comparable {
      * 
      *Costruttore partendo dal codice fiscale e dal nome, sesso, giorno mese e anno di nascita, richiama il costruttore della classe base.
      */
-    public Studente(String codiceFiscale, String cognome, String nome, char sesso, int gg_nascita, int mese_nascita, int aaaa_nascita) {
+    public Studente(String codiceFiscale, String cognome, String nome, char sesso, int gg_nascita, int mese_nascita, int aaaa_nascita) 
+    {
         super(codiceFiscale, cognome, nome, sesso, new GregorianCalendar(aaaa_nascita, mese_nascita, gg_nascita));
     }
 
@@ -59,7 +53,8 @@ public class Studente extends Utente { // implements Comparable {
      * 
      * Costruttore partendo solo dal codice fiscale e dal nome e cognome, richiama il costruttore della classe base.
      */
-    public Studente(String codiceFiscale, String cognome, String nome) {
+    public Studente(String codiceFiscale, String cognome, String nome) 
+    {
         super(codiceFiscale, cognome, nome);
     }
 
@@ -69,7 +64,8 @@ public class Studente extends Utente { // implements Comparable {
      * @return parentela
      * Metodo get per l'oggetto Genitore, ritorna un puntatore a quest'ultimo
      */
-    public Genitore[] getParentela() {
+    public Genitore[] getParentela() 
+    {
         return this.parentela;
     }
 
@@ -79,7 +75,8 @@ public class Studente extends Utente { // implements Comparable {
      * @param parentela i genitori dello studente
      * Medoto set per l'oggetto Genitore, assegna il valore passato per parametro a parentela
      */
-    public void setParentela(Genitore[] parentela) {
+    public void setParentela(Genitore[] parentela) 
+    {
         this.parentela = parentela;
     }
 
@@ -89,7 +86,8 @@ public class Studente extends Utente { // implements Comparable {
      * @return classe
      * Metodo get per l'oggetto Classe, ritorna un puntatore a quest'ultimo
      */
-    public Classe getClasseAppartenenza() {
+    public Classe getClasseAppartenenza() 
+    {
         return this.classe;
     }
 
@@ -99,7 +97,8 @@ public class Studente extends Utente { // implements Comparable {
      * @param classe
      * Medoto set per l'oggetto Classe, assegna il valore passato per parametro a classe
      */
-    public void setClasse(Classe classe) {
+    public void setClasse(Classe classe) 
+    {
         this.classe = classe;
     }
 
@@ -109,7 +108,8 @@ public class Studente extends Utente { // implements Comparable {
      * @return pagella
      * Metodo get per l'oggetto Pagella, ritorna un puntatore a quest'ultimo
      */
-    public Pagella getPagella() {
+    public Pagella getPagella() 
+    {
         return this.pagella;
     }
 
@@ -119,7 +119,8 @@ public class Studente extends Utente { // implements Comparable {
      * @param pagella
      * Medoto set per l'oggetto Pagella, assegna il valore passato per parametro a pagella
      */
-    public void setPagella(Pagella pagella) {
+    public void setPagella(Pagella pagella) 
+    {
         this.pagella = pagella;
     }
 
@@ -129,7 +130,8 @@ public class Studente extends Utente { // implements Comparable {
      * @return matricola
      * Metodo get per la proprietà matricola
      */
-    public int getMatricola() {
+    public int getMatricola() 
+    {
         return this.matricola;
     }
 
@@ -139,9 +141,9 @@ public class Studente extends Utente { // implements Comparable {
      * @param matricola
      * Medoto set per la proprietà matricola, assegna il valore passato per parametro a matricola
      */
-    public void assegnaMatricola() {
-        //this.matricola = matricola;
-        this.matricola=++Studente.studentiIscritti;
+    public void assegnaMatricola() 
+    {
+        this.matricola = ++Studente.studentiIscritti;
     }   
 
     /**
@@ -150,7 +152,8 @@ public class Studente extends Utente { // implements Comparable {
      * @param rappresentante
      * Ritorna lo stato di rappresentate
      */
-    public boolean isRappresentante() {
+    public boolean isRappresentante() 
+    {
         return this.rappresentante;
     }
 
@@ -159,7 +162,8 @@ public class Studente extends Utente { // implements Comparable {
      * @author Serrone Fabio
      * imposta lo stato di rappresentate a falso
      */
-    public void resetRappresentante() {
+    public void resetRappresentante()
+    {
         this.rappresentante = false;
     }
 
@@ -168,7 +172,8 @@ public class Studente extends Utente { // implements Comparable {
      * @author Serrone Fabio
      * imposta lo stato di rappresentante
      */
-    public void setRappresentante() {
+    public void setRappresentante() 
+    {
         this.rappresentante = true;
     }
 
@@ -178,7 +183,8 @@ public class Studente extends Utente { // implements Comparable {
      * @return studentiIscritti
      * Metodo get statico per la proprietà studentiIscritti
      */
-    public static int getStudentiIscritti(){
+    public static int getStudentiIscritti()
+    {
         return Studente.studentiIscritti;
     }
 
@@ -188,7 +194,8 @@ public class Studente extends Utente { // implements Comparable {
      * @param studentiIscritti
      * Medoto set per la proprietà studentiIscritti, assegna il valore passato per parametro a studentiIscritti
      */
-    public static void setStudentiIscritti(int studentiIscritti){
+    public static void setStudentiIscritti(int studentiIscritti)
+    {
         Studente.studentiIscritti = studentiIscritti;
     }
 
@@ -224,7 +231,8 @@ public class Studente extends Utente { // implements Comparable {
             return -1;
         else 
             return 0;
-    }*/
+    }
+    */
 
      /**
      * @author Latino Francesco 
@@ -232,7 +240,8 @@ public class Studente extends Utente { // implements Comparable {
      * ritorna una stringa con i parametri di un oggetto studente
      */
     @Override
-    public String toString() {
+    public String toString() 
+    {
 
         return getCognome() + ", " + getNome();
     }
@@ -244,7 +253,8 @@ public class Studente extends Utente { // implements Comparable {
      * compara due oggetti studente richiamando il metodo equals della classe base 
      */
     @Override
-    public boolean equals(Object altro) {
+    public boolean equals(Object altro) 
+    {
         if (altro == this)
             return true;
         
@@ -253,6 +263,17 @@ public class Studente extends Utente { // implements Comparable {
         
         Studente altroStudente = (Studente) altro;
 
-        return this.matricola == altroStudente.matricola;
+        //Confronto per matricola in caso possiediamo il valore, la utilizzo come prima chiave e come seconda chiave il nome e cognome
+        if (this.matricola != 0 && altroStudente.matricola != 0)
+            return this.matricola == altroStudente.matricola;
+        else
+            return this.nome.equals(altroStudente.nome) && this.cognome.equals(altroStudente.cognome);
     }
+
+    private static int studentiIscritti = 0;
+    private Genitore parentela[];
+    private Classe classe; 
+    private Pagella pagella;   
+    private int matricola;
+    private boolean rappresentante;
 }

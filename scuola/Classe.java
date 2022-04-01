@@ -3,24 +3,14 @@
  * @author Serrone Fabio
  * Classe Classe: implementà la classe di una scuola 
  */
-package scuola;
 
+package scuola;
 import java.util.Set;
 import java.util.TreeSet;
 
+
 public class Classe implements Comparable
-{
-    public static final int MAX_STUDENTI = 35;
-    
-    private PercorsoDidattico percorso;
-    private char sezione;
-    private int aula;
-    private String sede;
-    private Docente cordinatore;
-    //private Studente[] elenco;
-    private Set<Studente> elenco;
-    private int numeroStudenti;
-    
+{    
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
@@ -29,7 +19,7 @@ public class Classe implements Comparable
      * @param indirizzo  
      * @param aula
      * @param sede
-     * 
+     * Imposta cordinatore a null
      *Costruttore partendo da classe, sezione, indirizzo, aula e sede.
      */
     public Classe(int classe, char sezione, String indirizzo, int aula, String sede) 
@@ -50,7 +40,7 @@ public class Classe implements Comparable
      * @param sezione   
      * @param aula
      * @param sede
-     * 
+     * Imposeta cordinatore a null
      *Costruttore partendo da percorso didattico, sezione, aula e sede.
      */
     public Classe(PercorsoDidattico percorsoDidattico, char sezione, int aula, String sede) 
@@ -70,7 +60,7 @@ public class Classe implements Comparable
      * @param classe 
      * @param sezione 
      * @param indirizzo 
-     * 
+     * Imposta sede e cordinatore a null
      *Costruttore partendo da classe, sezione, ed indirizzo.
      */
     public Classe(int classe, char sezione, String indirizzo) 
@@ -112,7 +102,8 @@ public class Classe implements Comparable
      * @return coordinatore
      * Metodo get che ritorna il coordinatore della classe
      */
-    public Docente getCordinatore() {
+    public Docente getCordinatore() 
+    {
         return this.cordinatore;
     }
 
@@ -122,7 +113,8 @@ public class Classe implements Comparable
      * @param coordinatore
      * Metodo set che imposta il coordinatore della classe
      */
-    public void setCordinatore(Docente cordinatore) {
+    public void setCordinatore(Docente cordinatore) 
+    {
         this.cordinatore = cordinatore;
     }
 
@@ -132,7 +124,8 @@ public class Classe implements Comparable
      * @return sede
      * Metodo get che ritorna la sede della classe
      */
-    public String getSede() {
+    public String getSede() 
+    {
         return this.sede;
     }
 
@@ -142,7 +135,8 @@ public class Classe implements Comparable
      * @param coordinatore
      * Metodo set che imposta la sede della classe
      */
-    public void setSede(String sede) {
+    public void setSede(String sede) 
+    {
         this.sede = sede;
     }
 
@@ -152,7 +146,8 @@ public class Classe implements Comparable
      * @return aula
      * Metodo get che ritorna l'aula della classe
      */
-    public int getAula() {
+    public int getAula() 
+    {
         return this.aula;
     }
 
@@ -162,7 +157,8 @@ public class Classe implements Comparable
      * @param aula
      * Metodo set che imposta l'aula della classe
      */
-    public void setAula(int aula) {
+    public void setAula(int aula) 
+    {
         this.aula = aula;
     }
 
@@ -172,7 +168,8 @@ public class Classe implements Comparable
      * @return percorso
      * Metodo get che ritorna il percorso didattico
      */
-    public PercorsoDidattico getPercorso() {
+    public PercorsoDidattico getPercorso() 
+    {
         return this.percorso;
     }
 
@@ -182,7 +179,8 @@ public class Classe implements Comparable
      * @param percorso
      * Metodo set che imposta l'percorso didattico
      */
-    public void setPercorso(PercorsoDidattico percorso) {
+    public void setPercorso(PercorsoDidattico percorso) 
+    {
         this.percorso = percorso;
     }
 
@@ -192,7 +190,8 @@ public class Classe implements Comparable
      * @return sezione
      * Metodo get che ritorna la sezione della classe
      */
-    public char getSezione() {
+    public char getSezione() 
+    {
         return this.sezione;
     }
 
@@ -202,7 +201,8 @@ public class Classe implements Comparable
      * @param sezione
      * Metodo set che imposta la sezione della classe
      */
-    public void setSezione(char sezione) {
+    public void setSezione(char sezione) 
+    {
         this.sezione = sezione;
     }
 
@@ -212,12 +212,10 @@ public class Classe implements Comparable
      * @return elenco
      * Metodo get che ritorna l'elenco della classe
      */
-    public Set<Studente> getElenco() {
+    public Set<Studente> getElenco() 
+    {
         return this.elenco;
     }
-    /*public Studente[] getElenco() {
-        return this.elenco;
-    }*/
     
     /**
      * @author Latino Francesco 
@@ -225,12 +223,10 @@ public class Classe implements Comparable
      * @param elenco
      * Metodo set che imposta l'elenco della classe
      */
-    public void setElenco(Set<Studente> elenco) {
+    public void setElenco(Set<Studente> elenco) 
+    {
         this.elenco = elenco;
     }
-    /*public void setElenco(Studente[] elenco) {
-        this.elenco = elenco;
-    }*/
 
     /**
      * @author Latino Francesco 
@@ -238,7 +234,8 @@ public class Classe implements Comparable
      * @return numerostudenti
      * Metodo get che ritorna il numero di studenti della classe
      */
-    public int getNumeroStudenti() {
+    public int getNumeroStudenti() 
+    {
         return this.numeroStudenti;
     }
 
@@ -248,7 +245,8 @@ public class Classe implements Comparable
      * @param numerostudenti
      * Metodo set che imposta il numero di studenti della classe
      */
-    public void setNumeroStudenti(int numeroStudenti) {
+    public void setNumeroStudenti(int numeroStudenti) 
+    {
         this.numeroStudenti = numeroStudenti;
     }
 
@@ -277,32 +275,17 @@ public class Classe implements Comparable
         else
             throw new IllegalArgumentException();
     }
-    /**
-     * Trova lo studente data la sua posizione nell'elenco della classe
-     *       
-     * @param posizione: numero nell'elenco (da 1 a numero studenti)
-     *                   se è fuori fuori intervallo viene generata un'eccezione
-     * @return L'oggetto Studente che occupa la data posizione 
-     *         null in caso di nessuno studente presente alla posizione specificata
-     * @throws IndexOutOfBoundsException in caso di posizione non valida (fuori dall'intervallo)
-    */
-    /*public Studente getStudente(int posizione) throws IndexOutOfBoundsException {
-        if (posizione<0 || posizione>Classe.MAX_STUDENTI)
-            throw new IndexOutOfBoundsException();
-        else
-            if (posizione>this.numeroStudenti)
-                return null;
-            else
-                return elenco[posizione - 1];
-    }*/
+    
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
-     * @return studente
+     * @return studente se esiste uno studente con quella matricola se non esiste ritorna null
      * Metodo get per l'oggetto studente, ritorna uno studente della classe in base alla sua matricola
      */
-    public Studente getStudenteDaMatricola(int matricola){
-        for (Studente studente : elenco) {
+    public Studente getStudenteDaMatricola(int matricola)
+    {
+        for (Studente studente : elenco) 
+        {
             if(studente.getMatricola() == matricola)
                 return studente;
         }
@@ -312,26 +295,30 @@ public class Classe implements Comparable
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
-     * @return posizione
+     * @return posizione ritorna -1 se non esite lo studente
      * Metodo get per l'oggetto studente, la posizione di uno studente nell'elenco
      */
-    public int getPosizione(Studente st) throws IllegalArgumentException{
+    public int getPosizione(Studente st) 
+    {
         int result = 0;
-        for (Studente studente : elenco) {
+        for (Studente studente : elenco) 
+        {
             if (studente.equals(st))
                 return result;
             result++;
         }
-        throw new IllegalArgumentException();
+        return -1;
     }
 
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
+     * @throws IllegalArgumentException se il numero di studenti è maggiore di MAX_STUDENTI
      * @param studente
      * Aggiunge uno studente all'elenco
      */
-    public void aggiungi(Studente nuovo) throws IllegalArgumentException { 
+    public void aggiungi(Studente nuovo) throws IllegalArgumentException 
+    { 
         if (this.numeroStudenti + 1 <= MAX_STUDENTI)
         {
             this.elenco.add(nuovo);
@@ -372,13 +359,17 @@ public class Classe implements Comparable
      * ritorna una stringa con i parametri di un oggetto classe
      */
     @Override
-    public String toString() {        
+    public String toString()
+    {        
         String result = "Classe " + this.getClasseSezione()+"\n";
         int i = 1;
-        for (Studente studente : elenco) {
+
+        for (Studente studente : elenco) 
+        {
             result += i + ": " + studente.toString() + "\n";
             i++;
         }
+
         return result;
     }
 
@@ -390,7 +381,8 @@ public class Classe implements Comparable
      * Compara due oggetti classe confrontando la sezione e l'anno del corso
      */
     @Override
-    public boolean equals(Object altro) {
+    public boolean equals(Object altro) 
+    {
         if (altro == this)
             return false;
         
@@ -403,6 +395,7 @@ public class Classe implements Comparable
             return true;
         return false;
     }
+
      /**
      * @author Latino Francesco 
      * @author Serrone Fabio
@@ -429,14 +422,14 @@ public class Classe implements Comparable
             return -1;
         else 
             return 0;
-        }
+    }
 
-    /*private Docente cordinatore;
-    private String sede;
-    private int aula;
     private PercorsoDidattico percorso;
     private char sezione;
+    private int aula;
+    private String sede;
+    private Docente cordinatore;
     private Set<Studente> elenco;
     private int numeroStudenti;
-    public static final int MAX_STUDENTI = 35;*/
+    public static final int MAX_STUDENTI = 35;
 }

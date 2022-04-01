@@ -1,19 +1,15 @@
-package scuola;
-
 /**
  * Classe Ata.java
  * @version: 1.0
  * @author Jacopo Pellegrino
  */
 
+package scuola;
 import java.util.GregorianCalendar;
+ 
 
-public class Ata extends Dipendente {
-    
-    private int oresettimanali;    
-    public enum tipoRuolo {COLLABORATORE,ASSISTENTE_LABORATORIO,SEGRETERIA};
-    private tipoRuolo ruolo;  
-    
+public class Ata extends Dipendente 
+{        
     /**
      * primo metodo costruttore
      * @autor pellegrino jacopo
@@ -25,7 +21,8 @@ public class Ata extends Dipendente {
      * @param ruolo
      * @return /
      */
-    public Ata(String codiceFiscale, String nome, String cognome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo){
+    public Ata(String codiceFiscale, String nome, String cognome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo)
+    {
         super(codiceFiscale, nome, cognome, sesso, data_nascita);
         this.ruolo = ruolo;
     }
@@ -43,9 +40,9 @@ public class Ata extends Dipendente {
      * @param ruolo
      * @return /
      */
-    public Ata(String codiceFiscale, String nome, String cognome, char sesso, int gg_nascita, int mm_nascita, int aaaa_nascita){
+    public Ata(String codiceFiscale, String nome, String cognome, char sesso, int gg_nascita, int mm_nascita, int aaaa_nascita)
+    {
         super(codiceFiscale, nome, cognome, sesso, gg_nascita, mm_nascita, aaaa_nascita);
-        //this.ruolo = null;
     }
 
     /**
@@ -56,28 +53,33 @@ public class Ata extends Dipendente {
      * @param cognome
      * @return /
      */
-
-    public Ata(String codiceFiscale, String nome, String cognome){
+    public Ata(String codiceFiscale, String nome, String cognome)
+    {
         super(codiceFiscale, nome, cognome);
     }
+
     /**
      * metodo set 
      * @autor pellegrino jacopo
      * @param /
      * @return tipoRuolo
      */
-     public tipoRuolo setruolo(){
+     public tipoRuolo setruolo()
+     {
          return ruolo;
      }
+
     /**
      * metodo get 
      * @autor pellegrino jacopo
      * @param ruolo
      * @return /
      */
-     public void getruolo(tipoRuolo ruolo){
+     public void getruolo(tipoRuolo ruolo)
+     {
         this.ruolo = ruolo;
      }
+
      /**
      * metodo per il calcolo dello stipendio
      * @autor pellegrino jacopo
@@ -85,34 +87,51 @@ public class Ata extends Dipendente {
      * @return /
      */
     @Override
-    public void calcolaStipendio() {
+    public void calcolaStipendio()
+     {
         this.stipendio = 25 * oresettimanali;        
     }
      
     @Override
-    public float getStipendio() {
+    public float getStipendio() 
+    {
         return this.stipendio; 
     }
+
     /**
      * metodo tostring
      * @autor pellegrino jacopo
-     * @param /
      * @return string
      */
     @Override
-    public String toString(){
+    public String toString()
+    {
        return super.toString() + "ruolo=" + this.ruolo;
     }
+
     /**
      * metodo equals
      * @autor pellegrino jacopo
      * @param Ata
      * @return boolean
      */
-    public boolean equals(Object Ata){
-        if(Ata instanceof Ata){
-            Ata p = (Ata)Ata;
-            return (codiceFiscale==p.codiceFiscale)?true:false;
-        } else return false;
+    public boolean equals(Object Ata)
+    {
+        if (this == Ata)
+            return true;
+        
+        if (Ata == null)
+            return false;
+
+        if(!(Ata instanceof Ata))
+            return false;
+
+        Ata p = (Ata)Ata;
+
+        return this.codiceFiscale == p.codiceFiscale;
     }
+
+    private int oresettimanali;    
+    public enum tipoRuolo {COLLABORATORE, ASSISTENTE_LABORATORIO, SEGRETERIA};
+    private tipoRuolo ruolo;  
 }

@@ -1,26 +1,14 @@
-/*
- */
-package scuola;
-
-import java.util.GregorianCalendar;
-
 /**
  * Docente
  * di Emanuele Serafini e Donato Ciardo 4°A
  */
-public class Docente extends Dipendente {
 
-    final static int MAX_MATERIE=10;
+package scuola;
+import java.util.GregorianCalendar;
 
-    private enum tipoRuolo {
-        TEORIA,
-        LABORATORIO
-    }
-    private tipoRuolo ruolo;
 
-    private int numMaterieInsegnate;
-    private String materie[]=new String[MAX_MATERIE];
-
+public class Docente extends Dipendente 
+{
     /**
      * Metodo costruttore
      * @param cf
@@ -30,8 +18,8 @@ public class Docente extends Dipendente {
      * @param data_nascita
      * @param ruolo
      */
-
-    public Docente (String cf, String cognome, String nome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo) {
+    public Docente (String cf, String cognome, String nome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo) 
+    {
         super(cf, cognome, nome, sesso, data_nascita);
         this.ruolo=ruolo;
     }
@@ -47,8 +35,8 @@ public class Docente extends Dipendente {
      * @param anno_nascita
      * @param ruolo
      */
-
-    public Docente (String cf, String cognome, String nome, char sesso, int giorno_nascita, int mese_nascita, int anno_nascita, tipoRuolo ruolo) {
+    public Docente (String cf, String cognome, String nome, char sesso, int giorno_nascita, int mese_nascita, int anno_nascita, tipoRuolo ruolo) 
+    {
         super(cf, cognome, nome, sesso, giorno_nascita, mese_nascita, anno_nascita);
         this.ruolo=ruolo;
     }
@@ -59,8 +47,8 @@ public class Docente extends Dipendente {
      * @param cognome
      * @param nome
      */
-
-    public Docente (String cf, String cognome, String nome) {
+    public Docente (String cf, String cognome, String nome) 
+    {
         super(cf, cognome, nome);
     }
 
@@ -68,8 +56,8 @@ public class Docente extends Dipendente {
      * Metodo Get per il numero delle materie insegnate
      * @return numero materie insegnate
      */
-
-    public int getNumMaterieInsegnate() {
+    public int getNumMaterieInsegnate() 
+    {
         return this.numMaterieInsegnate;
     }
 
@@ -78,7 +66,8 @@ public class Docente extends Dipendente {
      * @param numMaterieInsegnate Quante materie insegnate
      */
 
-    public void setNumMaterieInsegnate(int numMaterieInsegnate) {
+    public void setNumMaterieInsegnate(int numMaterieInsegnate) 
+    {
         this.numMaterieInsegnate = numMaterieInsegnate;
     }
 
@@ -86,8 +75,8 @@ public class Docente extends Dipendente {
      * Metodo Get per le materie insegnate
      * @return Array di string delle materie insegnate
      */
-
-    public String[] getMaterie() {
+    public String[] getMaterie() 
+    {
         return this.materie;
     }
 
@@ -95,8 +84,8 @@ public class Docente extends Dipendente {
      * Metodo Set per le materie insegnate
      * @param materie Array di String con le materie che il docente insegna
      */
-
-    public void setMaterie(String[] materie) {
+    public void setMaterie(String[] materie) 
+    {
         this.materie = materie;
     }
 
@@ -104,8 +93,8 @@ public class Docente extends Dipendente {
      * Metodo Get per ruolo docente
      * @return Ruolo del docente
      */
-
-    public tipoRuolo getRuolo() {
+    public tipoRuolo getRuolo() 
+    {
         return this.ruolo;
     }
 
@@ -113,8 +102,8 @@ public class Docente extends Dipendente {
      * Metodo Set per ruolo docente
      * @param ruolo Ruolo del docente
      */
-
-    public void setRuolo(tipoRuolo ruolo) {
+    public void setRuolo(tipoRuolo ruolo) 
+    {
         this.ruolo = ruolo;
     }
 
@@ -122,10 +111,11 @@ public class Docente extends Dipendente {
      * Aggiungere abilitazione di una materia
      * @param material Nome materia da aggiungere
      */
-
-    public void aggiungiAbilitazione(String material) {
-        if (numMaterieInsegnate<MAX_MATERIE) {
-            this.materie[numMaterieInsegnate]=material;
+    public void aggiungiAbilitazione(String material) 
+    {
+        if (numMaterieInsegnate < MAX_MATERIE) 
+        {
+            this.materie[numMaterieInsegnate] = material;
             numMaterieInsegnate++; 
         }
     }
@@ -135,19 +125,24 @@ public class Docente extends Dipendente {
      * @param material Nome materia da rimuovere
      * @return vero se rimossa
      */
-
-    public boolean rimuoviAbilitazione(String material) {
-        int posizione=0;
-        boolean trovata=false;
-        for (int i=0; i<numMaterieInsegnate && posizione==0 && trovata==false; i++) {
-            if (this.materie[i].equals(material)) {
-                posizione=i+1;
-                trovata=true;
+    public boolean rimuoviAbilitazione(String material) 
+    {
+        int posizione = 0;
+        boolean trovata = false;
+        
+        for (int i=0; i<numMaterieInsegnate && posizione == 0 && trovata == false; i++) 
+        {
+            if (this.materie[i].equals(material)) 
+            {
+                posizione = i + 1;
+                trovata = true;
             }
         }
 
-        if (trovata==true) {
-            for (int i=posizione-1; i<this.numMaterieInsegnate-1; i++) {
+        if (trovata == true) 
+        {
+            for (int i = posizione -1 ; i < this.numMaterieInsegnate - 1; i++) 
+            {
                 this.materie[i]=this.materie[i+1];
             }
             numMaterieInsegnate--;
@@ -157,13 +152,15 @@ public class Docente extends Dipendente {
     }
 
     @Override
-    public void calcolaStipendio() {
+    public void calcolaStipendio() 
+    {
         float fisso=500;
         this.stipendio=fisso+1500;
     }
     
     @Override
-    public float getStipendio() {
+    public float getStipendio() 
+    {
         return this.stipendio;
     }
 
@@ -171,11 +168,12 @@ public class Docente extends Dipendente {
      * Metodo toString per stampare i dati e le caratteristiche del docente
      * @return Stringa con tutti i dati
      */
-
     @Override
-    public String toString() {
-        String stampa=super.toString() + " " + this.ruolo + " " + this.numMaterieInsegnate + " ";
-        for (int i=0; i<numMaterieInsegnate; i++) {
+    public String toString() 
+    {
+        String stampa = super.toString() + " " + this.ruolo + " " + this.numMaterieInsegnate + " ";
+        for (int i=0; i < numMaterieInsegnate; i++) 
+        {
             stampa += materie[i] + "," + " ";
         }
         return stampa;
@@ -185,9 +183,15 @@ public class Docente extends Dipendente {
      * Metodo equals per confrontare docenti
      * @return ritorna vero se l'uguaglianza è vera
      */
-
     @Override
-    public boolean equals (Object altro) {
+    public boolean equals (Object altro) 
+    {
         return super.equals(altro);
     }    
+
+    final static int MAX_MATERIE=10;
+    public enum tipoRuolo {TEORIA, LABORATORIO};
+    private tipoRuolo ruolo;
+    private int numMaterieInsegnate;
+    private String materie[] = new String[MAX_MATERIE];
 }

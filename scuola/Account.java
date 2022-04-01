@@ -6,73 +6,89 @@
 
 package scuola;
 
-public class Account{
 
-    private String password;
-    private String email;
+public class Account
+{
 
-    public Account(String email){
-        this.email=email;
-
+    public Account(String email)
+    {
+        this.email = email;
+        password = "";
     }
 
-    public Account(String email, String password){
-        this.email=email;
-        this.password=password;
+    public Account(String email, String password)
+    {
+        this.email = email;
+        this.password = password;
     }
 
-    public String getPassword(){
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String newpassword){
-        this.password=newpassword;
+    public void setPassword(String newpassword)
+    {
+        this.password = newpassword;
     }
 
-    public String getEmail(){
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String newemail){
-        this.email=newemail;
+    public void setEmail(String newemail)
+    {
+        this.email = newemail;
     }
 
-    public void associa(Utente altro){
-        altro.password=this.password;
-        altro.email=this.email;
+    public void associa(Utente altro)
+    {
+        altro.password = this.password;
+        altro.email = this.email;
     }
    
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) 
+    {
         if (this == obj)
             return true;
+
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+    
+        if(!(obj instanceof Account))
             return false;
+
         Account other = (Account) obj;
-        if (email == null) {
+        
+        if (email == null) 
+        {
             if (other.email != null)
                 return false;
-        } else if (!email.equals(other.email))
+        } 
+        else if (!email.equals(other.email))
             return false;
-        if (password == null) {
+
+        if (password == null) 
+        {
             if (other.password != null)
                 return false;
+
         } else if (!password.equals(other.password))
             return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "email=" + email + ", password=" + password;
     }
 
-    
 
-    
-
-
+    private String password;
+    private String email;
 }

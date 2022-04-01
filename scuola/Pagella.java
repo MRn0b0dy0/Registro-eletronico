@@ -4,107 +4,194 @@
  * @author Amato Fernando
  * @version 1.0
  */
+
 package scuola;
 
-public class Pagella {
-
-    private static final int MAX_MATERIE = 10;
-    
-    private int numeroMaterie;
-    private String[] materie;
-    private int[] voti;
-    private int numeroVotiInseriti;
-    private Studente studente;
-
-    public Pagella(int numeroMaterie) {
+                    /* STUDENTE CAPIRE */
+public class Pagella 
+{
+    public Pagella(int numeroMaterie) 
+    {
         this.numeroMaterie = numeroMaterie;
+        this.numeroVotiInseriti = 0;
     }
 
-    public Pagella(String[] materie) {
+    public Pagella(String[] materie) 
+    {
         this.materie = materie;
         this.numeroMaterie=materie.length;
+        this.numeroVotiInseriti = 0;
     }
 
-    public String GetMaterie(int pos) {
-        for (int i = 0; i < this.numeroMaterie; i++) {
-            if (this.materie[i].equals(pos)) {
-                return this.materie[i];
-            }
-        }
-        return null;
+    /**
+     * @return materie se la posizione è valida se no ritorna null
+     * @param pos la posizione
+     */
+    public String getMaterie(int pos) 
+    {
+        if (pos >= 0 && pos < numeroMaterie)
+            return materie[pos];
+        else
+            return null;
     }
 
-    public void SetMaterie(String[] materie) {
+    public void SetMaterie(String[] materie, int numeroVotiInseriti)
+    {
         this.materie = materie;
+        this.numeroMaterie = numeroVotiInseriti;
     }
 
-    public void SetVoti(int[] voti, int numeroVotiInseriti) {
-        this.voti[0] = this.voti[numeroVotiInseriti];
+    public void SetVoti(int[] voti, int numeroVotiInseriti)
+    {
+        this.voti = voti;
+        this.numeroVotiInseriti = numeroVotiInseriti;
     }
 
-    public int GetNumeroVotiInseriti() {
+    public int getNumeroVotiInseriti() 
+    {
         return this.numeroVotiInseriti;
     }
 
-    public boolean isCompilata() {
-        return this.numeroMaterie>0 && this.numeroVotiInseriti==this.numeroMaterie;
+    public boolean isCompilata() 
+    {
+        return this.numeroMaterie > 0 && this.numeroVotiInseriti == this.numeroMaterie;
     }
 
-    public float mediaVoti() {
+    public float mediaVoti() 
+    {
         int tot = 0;
         float media;
-        for (int i = 0; i < this.numeroVotiInseriti; i++) {
-            tot = tot + this.voti[i];
+        
+        for (int i = 0; i < numeroVotiInseriti; i++) 
+        {
+            tot += voti[i];
         }
-        media = tot / this.numeroVotiInseriti;
+
+        media = (float) tot / numeroVotiInseriti;
         return media;
     }
 
-    public int numeroDebiti() {
+    public int numeroDebiti() 
+    {
         int debiti = 0;
-        for (int i = 0; i < this.numeroMaterie; i++) {
-            if (this.mediaVoti() < 6) {
+        
+        for (int i = 0; i < this.numeroMaterie; i++) 
+        {
+            if (this.mediaVoti() < 6) 
+            {
                 debiti++;
             }
         }
+
         return debiti;
     }
+    
+    public int[] getVoti()
+    {
+        if (!this.isCompilata()) 
+        {
+            return null;
+        } 
+
+        return this.voti;
+    }
+    
+    public void setVoti(int[] voti) 
+    {
+        this.voti = voti;
+    }
+
+    public void setVoto(String materia, int voto) 
+    {
+        boolean trovata = false;
+    
+        for (int i = 0; i < this.numeroMaterie && !trovata; i++) 
+        {
+            if (this.materie[i].equalsIgnoreCase(materia)) 
+            {
+                this.voti[i] = voto;
+                trovata = true;
+            }           
+        }
+    }
+
     /**
      * Restiruisce il voto conseguito in una data materia
      * @param materia
      * @return
      * @throws Exception 
      */
-    public int getVoto(String materia) throws Exception {
-        for (int i = 0; i < this.numeroMaterie; i++) {
-            if (this.materie[i].equalsIgnoreCase(materia)) {
+    public int getVoto(String materia) throws Exception 
+    {
+        for (int i = 0; i < this.numeroMaterie; i++) 
+        {
+            if (this.materie[i].equalsIgnoreCase(materia)) 
+            {
                 return this.voti[i];
             }           
         }
-        //gestione eccezione personalizzata
+
         throw new Exception();
     }
-    
-    public int[] getVoti() {
-        if (!this.isCompilata()) {
-            return null;
-        } 
-        return this.voti;
-    }
-    
-    public void setVoti(int[] voti) {
-        this.voti = voti;
+
+
+    @Override
+    public String toString() 
+    {
+        String result = "";
+        for (int i = 0; i < this.numeroMaterie; i++) 
+        {
+            result += this.materie[i] + ": " + this.voti[i] + "\n";
+        }
+        return result;
     }
 
-    public void setVoto(String materia, int voto) {
-        boolean trovata=false;
-        for (int i = 0; i < this.numeroMaterie && !trovata; i++) {
-            if (this.materie[i].equalsIgnoreCase(materia)) {
-                this.voti[i]=voto;
-                trovata=true;
-            }           
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (!(obj instanceof Pagella))
+            return false;
+
+        Pagella other = (Pagella) obj;
+
+        if (numeroMaterie != other.numeroMaterie)
+            return false;
+
+        if (numeroVotiInseriti != other.numeroVotiInseriti)
+            return false;
+        
+        boolean result = true;
+
+        for (int i = 0; i < numeroMaterie; i++) 
+        {
+            if (!materie[i].equals(other.materie[i])) 
+            {
+                result = false;
+                break;
+            }
         }
+        
+        for (int i = 0; i < numeroVotiInseriti; i++) {
+            if (voti[i] != other.voti[i]) 
+            {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
-    //!!!toString
-    //!!!equals
+
+    private static final int MAX_MATERIE = 10;
+    private int numeroMaterie;
+    private String[] materie;
+    private int[] voti;
+    private int numeroVotiInseriti;
+    //private Studente studente; non corispondente alla progettazione
 }
