@@ -1,0 +1,9 @@
+Rossi,Mario,m,10,5,2000,3,A
+Verdi,Luigi,m,1,1,1999,3,A
+Bianchi,Paola,f,23,11,2000,3,A
+Neri,Carlo,m,5,4,1999,4,A
+Rossetto,Giulia,f,2,2,1998,4,A
+Rosa,Rosa,f,25,4,1998,4,A
+Gialli,Dario,m,4,5,1999,4,A
+Viola,Viola,f,3,3,1998,4,B
+Rossi,Marco,m,14,8,1998,4,B
