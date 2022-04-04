@@ -8,7 +8,7 @@ package scuola;
 import java.util.Set;
 import java.util.TreeSet;
 
-
+                                        /*Anno corso*/
 public class Classe implements Comparable
 {    
     /**
@@ -322,7 +322,9 @@ public class Classe implements Comparable
         if (this.numeroStudenti + 1 <= MAX_STUDENTI)
         {
             this.elenco.add(nuovo);
+            nuovo.classe = this;
             nuovo.assegnaMatricola();
+            numeroStudenti++;
         }
         else
             throw new IllegalArgumentException();
@@ -337,6 +339,7 @@ public class Classe implements Comparable
     public void rimuovi(Studente nuovo)
     { 
         elenco.remove(nuovo);
+        nuovo.classe = null;
     }
 
     /**
@@ -391,7 +394,7 @@ public class Classe implements Comparable
 
         Classe classe = (Classe) altro;
 
-        if (this.aula == classe.aula && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione))
+        if (percorso.getannoCorso() == classe.percorso.getannoCorso() && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione))
             return true;
         return false;
     }

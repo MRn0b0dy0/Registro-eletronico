@@ -1,9 +1,9 @@
-Rossi,Mario,m,10,5,2000,3,A
-Verdi,Luigi,m,1,1,1999,3,A
-Bianchi,Paola,f,23,11,2000,3,A
-Neri,Carlo,m,5,4,1999,4,A
-Rossetto,Giulia,f,2,2,1998,4,A
-Rosa,Rosa,f,25,4,1998,4,A
-Gialli,Dario,m,4,5,1999,4,A
-Viola,Viola,f,3,3,1998,4,B
-Rossi,Marco,m,14,8,1998,4,B
+RSSMRA00R05A519L, Rossi,Mario,m,10,5,2000,3,A
+VRDLGU99A01E423D, Verdi,Luigi,m,1,1,1999,3,A
+BNCPLA00S63D848E, Bianchi,Paola,f,23,11,2000,3,A
+CRLNRE99D45E458M, Neri,Carlo,m,5,4,1999,4,A
+GLIRTT99D45D852Z, Rossetto,Giulia,f,2,2,1998,4,A
+RSORSO99D45D852K, Rosa,Rosa,f,25,4,1998,4,A
+GLLDRA99E04A182Y, Gialli,Dario,m,4,5,1999,4,A
+VLIVLI98C43A182B, Viola,Viola,f,3,3,1998,4,B
+RSSMRC98M14A182A, Rossi,Marco,m,14,8,1998,4,B

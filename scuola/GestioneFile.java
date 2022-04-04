@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+                                    /*Bug equals and bug matricole */
 public class GestioneFile 
 {
     
@@ -295,14 +295,16 @@ public class GestioneFile
     public static int importaIscrizioniAlunni(String nomeFile, Classe[] classi, int nclassi) throws FileNotFoundException,IOException,IndexOutOfBoundsException,Exception {
         
         BufferedReader br = null;
-	String riga = "";  
-        // Carico le iscrizioni effettuate dagli alunni dal file
+	    String riga = "";  
         int iscrizioni=0;
-        try {
+        /*PIENO DI BUG */
+        // Carico le iscrizioni effettuate dagli alunni dal file
+        try 
+        {
             br = new BufferedReader(new FileReader(nomeFile)); 
-            while ((riga = br.readLine()) != null) {
+            while ((riga = br.readLine()) != null) 
+            {
                 String[] campi = riga.split(",");
-                // campi[0] => cf
                 // campi[1] => cognome
                 // campi[2] => nome
                 // campi[3] => sesso
@@ -311,19 +313,29 @@ public class GestioneFile
                 Studente nuovo = new Studente(campi[0],campi[1],campi[2],campi[3].charAt(0),Integer.valueOf(campi[4]),Integer.valueOf(campi[5]),Integer.valueOf(campi[6]));
                 nuovo.setSesso(campi[2].charAt(0));
                 Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0),null);
-                for(int i=0; i<nclassi; i++)
+                
+                for(int i = 0; i < nclassi; i++)
+                {
                     //trova la classe
                     if(classi[i].equals(classe_scelta))
-                        //aggiungilo alla classe
-                        try {
-                            nuovo.assegnaMatricola();
+                    {
+                        try 
+                        {
+                            //aggiungilo alla classe BUG MATRICOLA
                             classi[i].aggiungi(nuovo);
-                        } catch(IndexOutOfBoundsException e) {
+                            break;
+                        } 
+                        catch(IndexOutOfBoundsException e) 
+                        {
                             throw new IndexOutOfBoundsException();
                         }
+                    }
+                }
                 iscrizioni++;
             }
-	} catch (FileNotFoundException e) {
+	} 
+    catch (FileNotFoundException e) 
+    {
             throw new FileNotFoundException();
         } catch (IOException e) {
             throw new IOException("Errore di accesso al file");

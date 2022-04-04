@@ -7,8 +7,8 @@
 package scuola;
 import java.util.GregorianCalendar;
 
-                                                        /*PAGELLA*/
-public class Studente extends Utente {//implements Comparable<Studente> { 
+
+public class Studente extends Utente {//implements Comparable<> { 
         
     /**
      * @author Latino Francesco 
@@ -94,17 +94,6 @@ public class Studente extends Utente {//implements Comparable<Studente> {
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
-     * @param classe
-     * Medoto set per l'oggetto Classe, assegna il valore passato per parametro a classe
-     */
-    public void setClasse(Classe classe) 
-    {
-        this.classe = classe;
-    }
-
-    /**
-     * @author Latino Francesco 
-     * @author Serrone Fabio
      * @return pagella
      * Metodo get per l'oggetto Pagella, ritorna un puntatore a quest'ultimo
      */
@@ -121,6 +110,7 @@ public class Studente extends Utente {//implements Comparable<Studente> {
      */
     public void setPagella(Pagella pagella) 
     {
+        pagella.studente = this;
         this.pagella = pagella;
     }
 
@@ -272,7 +262,7 @@ public class Studente extends Utente {//implements Comparable<Studente> {
 
     private static int studentiIscritti = 0;
     private Genitore parentela[];
-    private Classe classe; 
+    protected Classe classe; 
     private Pagella pagella;   
     private int matricola;
     private boolean rappresentante;

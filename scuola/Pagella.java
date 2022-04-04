@@ -7,7 +7,7 @@
 
 package scuola;
 
-                    /* STUDENTE CAPIRE */
+
 public class Pagella 
 {
     public Pagella(int numeroMaterie) 
@@ -19,7 +19,7 @@ public class Pagella
     public Pagella(String[] materie) 
     {
         this.materie = materie;
-        this.numeroMaterie=materie.length;
+        this.numeroMaterie = materie.length;
         this.numeroVotiInseriti = 0;
     }
 
@@ -115,6 +115,11 @@ public class Pagella
         }
     }
 
+    public Studente getStudente() 
+    {
+        return this.studente;
+    }
+
     /**
      * Restiruisce il voto conseguito in una data materia
      * @param materia
@@ -193,5 +198,5 @@ public class Pagella
     private String[] materie;
     private int[] voti;
     private int numeroVotiInseriti;
-    //private Studente studente; non corispondente alla progettazione
+    protected Studente studente;
 }

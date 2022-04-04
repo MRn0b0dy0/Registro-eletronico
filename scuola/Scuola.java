@@ -6,6 +6,10 @@
  * Classe applicazione
  * @author classe 4A
  */
+/**
+ * To Do:
+ * Sincoronizare pagella e studente
+ */
 
 package scuola;
 import java.io.FileNotFoundException;
@@ -39,6 +43,17 @@ public class Scuola {
             Video.scriviStringa("Errore di accesso al file"); Video.aCapo();
         }
         
+        try 
+        {
+           GestioneFile.importaIscrizioniAlunni("alunni.txt", classiFormate, numeroClassi);
+        } 
+        catch (Exception e) 
+        {
+            Video.scriviStringa("Errore di accesso al file\n"); 
+        }
+        
+
+
         //carica percorsi didattici (indirizzi e relativi PIANI DI STUDIO) 
         int numPercorsi=0;
         
@@ -61,13 +76,15 @@ public class Scuola {
         {
             trovato = false;
             for(int j = 0; j < numPercorsi && !trovato; j++)
+            {
                 if(classiFormate[i].getPercorso().equals(percorsi[j])) 
                 {
                    classiFormate[i].getPercorso().setMaterie(percorsi[j].getMaterie(),percorsi[j].getNumeroMaterie());
                    trovato = true;
                 }
-        }     
-            
+        
+            }     
+        }    
 
         //Visulizza dati anno scolastico corrente importati dalla segreteria 
         /*Video.scriviStringa("Piani di studio dell'offerta formativa: "); Video.aCapo();
@@ -168,12 +185,12 @@ public class Scuola {
                                     {
                                         Video.scriviStringa("\nInserire la matricola del studente da trasferire:");
                                         int matricola = Tastiera.leggiIntero();
-                                        Video.scriviStringa("\nInserire la nuova classe:");
+                                        Video.scriviStringa("Inserire la nuova classe:");
                                         int nuovaClasse = Tastiera.leggiIntero();
-                                        Video.scriviStringa("\nInserire la nuova sezione:");
+                                        Video.scriviStringa("Inserire la nuova sezione:");
                                         char nuovaSezione = Tastiera.leggiCarattere();
-                                        Studente s = new Studente("", "", "", ' ', 0, 0, 0);
-                                        Classe c = new Classe(0, ' ', "");
+                                        Studente s = null;
+                                        Classe classeVecchia = null;
 
                                         trovato = false;
 
@@ -182,7 +199,7 @@ public class Scuola {
                                             s = classiFormate[i].getStudenteDaMatricola(matricola);    
                                             if (s != null)
                                             {
-                                                c = classiFormate[i];
+                                                classeVecchia = classiFormate[i];
                                                 trovato = true;
                                             }                                            
                                         }
@@ -194,6 +211,7 @@ public class Scuola {
                                             {
                                                 if(classiFormate[i].equals(nuovaClasse, nuovaSezione))
                                                 {
+                                                    classeVecchia.rimuovi(s);
                                                     classiFormate[i].aggiungi(s);
                                                     trovato = true;
                                                 }
@@ -201,7 +219,6 @@ public class Scuola {
 
                                             if(trovato)
                                             {
-                                                c.rimuovi(s);
                                                 Video.scriviStringa("\t\tInserimento riuscito!\n");
                                             }
                                             else
@@ -220,7 +237,7 @@ public class Scuola {
                                         Video.scriviStringa("Errore di input!");
                                     }
 
-                                    break;
+                                    break;  
                                 }
 
                             case 'v':
