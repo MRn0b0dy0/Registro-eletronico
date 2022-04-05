@@ -233,7 +233,7 @@ public class Studente extends Utente {//implements Comparable<> {
     public String toString() 
     {
 
-        return getCognome() + ", " + getNome();
+        return "Matricola: " + getMatricola() + ", " + getCognome() + ", " + getNome();
     }
 
     /**

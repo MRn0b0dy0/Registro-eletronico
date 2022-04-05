@@ -29,7 +29,8 @@ public class Scuola {
 
         /**** importa dati segreteria   *****/
         //crea l'elenco delle classi formate 
-        int numeroClassi=0;
+        int numeroClassi = 0;
+
         try 
         {
             numeroClassi = GestioneFile.leggiClassi("classi.csv", classiFormate);
@@ -45,7 +46,7 @@ public class Scuola {
         
         try 
         {
-           GestioneFile.importaIscrizioniAlunni("alunni.txt", classiFormate, numeroClassi);
+            GestioneFile.importaIscrizioniAlunni("alunni.txt", classiFormate, numeroClassi);
         } 
         catch (Exception e) 
         {
@@ -71,7 +72,7 @@ public class Scuola {
         }
 
         //imposta percorsi per ogni classe
-        boolean trovato;
+        boolean trovato = false;
         for(int i = 0; i < numeroClassi; i++)
         {
             trovato = false;
@@ -108,6 +109,7 @@ public class Scuola {
                 Video.scriviStringa("              V - VISUALIZZA classe\n");
                 Video.scriviStringa("              R - CERCA studente\n");
                 Video.scriviStringa("              F - FORMAZIONE classi\n");
+                Video.scriviStringa("              N - Nomina rappresentante di classe\n");
                 Video.scriviStringa("              X - FINE\n\n");
                 
                 Video.scriviStringa("              Scelta => ");
@@ -349,7 +351,43 @@ public class Scuola {
                                     }
                                     break;
                                 }
+                            case 'n':
+                            case 'N':
+                                {
+                                    try 
+                                    {
+                                        Video.scriviStringa("\nInserire matricola dello studente da promuovere a rappresentante di classe:");
+                                        int matricola = Tastiera.leggiIntero();
+                                        trovato = false;
+                                        
+                                        for(int i = 0; i < numeroClassi && !trovato; i++) 
+                                        {
+                                            Studente s = classiFormate[i].getStudenteDaMatricola(matricola);    
+                                            if (s != null)
+                                            {
+                                                for (var student : classiFormate[i].getElenco()) 
+                                                {
+                                                    if (student.isRappresentante())
+                                                        student.resetRappresentante();    
+                                                }
 
+                                                s.setRappresentante();
+                                                System.out.println(s + " promosso a rappresentante di classe!\n");
+                                                trovato = true;
+                                            }                                            
+                                        }
+                                        
+                                        if(!trovato) 
+                                        {
+                                            Video.scriviStringa("Studente non trovato!");
+                                        }
+                                    } 
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!");
+                                    }
+                                    break;   
+                                }
                             case 'x': 
                             case 'X': 
                                 {

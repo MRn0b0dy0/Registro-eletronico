@@ -250,7 +250,8 @@ public class GestioneFile
             }
         }
         return i;
-    }
+    }    
+
     /**
      * Legge il numero di righe contenute in un file
      * @param nomeFile nome del file
@@ -297,11 +298,13 @@ public class GestioneFile
         BufferedReader br = null;
 	    String riga = "";  
         int iscrizioni=0;
-        /*PIENO DI BUG */
+
         // Carico le iscrizioni effettuate dagli alunni dal file
         try 
         {
             br = new BufferedReader(new FileReader(nomeFile)); 
+
+            //PROBLEM STARTS
             while ((riga = br.readLine()) != null) 
             {
                 String[] campi = riga.split(",");
@@ -310,10 +313,12 @@ public class GestioneFile
                 // campi[3] => sesso
                 // data nascita: campi[4] => giorno campi[5] => mese campi[6] => anno
                 // campi[7] => classe campi[8] => sezione 
-                Studente nuovo = new Studente(campi[0],campi[1],campi[2],campi[3].charAt(0),Integer.valueOf(campi[4]),Integer.valueOf(campi[5]),Integer.valueOf(campi[6]));
-                nuovo.setSesso(campi[2].charAt(0));
-                Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0),null);
+                Studente nuovo = new Studente(campi[0], campi[1], campi[2], campi[3].charAt(0), Integer.valueOf(campi[4]), Integer.valueOf(campi[5]), Integer.valueOf(campi[6]));
+
+                Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0), null);
                 
+                //print the new student and new class using toString just for debug purposes
+                System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
                 for(int i = 0; i < nclassi; i++)
                 {
                     //trova la classe
@@ -321,8 +326,9 @@ public class GestioneFile
                     {
                         try 
                         {
-                            //aggiungilo alla classe BUG MATRICOLA
                             classi[i].aggiungi(nuovo);
+                            //print the new student and new class just for debug purposes
+                            System.out.println("Iscrizione effettuata: " + nuovo.getCognome() + " " + nuovo.getNome() + " " + classi[i].getSezione() + " " + classi[i].getPercorso().getannoCorso() + "\n\n\n");
                             break;
                         } 
                         catch(IndexOutOfBoundsException e) 
@@ -332,7 +338,15 @@ public class GestioneFile
                     }
                 }
                 iscrizioni++;
+                //Thread.sleep(1); Solve the bug but it's not the best solution we couldn't find what is causing the bug
+                
+                //print the class using toString just for debug purposes
+                for(int i = 0; i < nclassi; i++)
+                {
+                    System.out.println(classi[i]);
+                }
             }
+            //PROBLEM ENDS
 	} 
     catch (FileNotFoundException e) 
     {
