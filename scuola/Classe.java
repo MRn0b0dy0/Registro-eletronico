@@ -323,7 +323,7 @@ public class Classe implements Comparable
         {
             this.elenco.add(nuovo);
             nuovo.classe = this;
-            nuovo.assegnaMatricola();
+            //nuovo.assegnaMatricola();
             numeroStudenti++;
         }
         else
