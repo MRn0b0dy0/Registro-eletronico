@@ -429,9 +429,6 @@ public class Scuola {
                                         }*/
                                     }
                                     catch (Exception e)
-                                        }
-                                    }
-                                    catch (Exception e)
                                     {
                                         Video.scriviStringa("Errore di input!");
                                     }

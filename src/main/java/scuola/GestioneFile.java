@@ -317,7 +317,7 @@ public class GestioneFile
                 Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0), null);
 
                 //print the new student and new class using toString just for debug purposes
-                //System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
+                System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
                 for(int i = 0; i < nclassi; i++)
                 {
                     //trova la classe
@@ -338,10 +338,10 @@ public class GestioneFile
                 }
                 iscrizioni++;
                 //print the class using toString just for debug purposes
-                /*for(int i = 0; i < nclassi; i++)
+                for(int i = 0; i < nclassi; i++)
                 {
                     System.out.println(classi[i]);
-                }*/
+                }
             }
             //PROBLEM ENDS
 	}

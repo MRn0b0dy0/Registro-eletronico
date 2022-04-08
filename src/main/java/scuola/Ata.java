@@ -37,7 +37,6 @@ public class Ata extends Dipendente
      * @param gg_nascita
      * @param mm_nascita
      * @param aaaa_nascita
-     * @param ruolo
      * @return /
      */
     public Ata(String codiceFiscale, String nome, String cognome, char sesso, int gg_nascita, int mm_nascita, int aaaa_nascita)

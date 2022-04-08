@@ -28,7 +28,7 @@ public class Classe implements Comparable<Classe>
         this.sezione = sezione;
         this.aula = aula;
         this.sede = sede;
-        this.cordinatore = null;
+        this.coordinatore = null;
         this.elenco = new TreeSet<Studente>();
         this.numeroStudenti = 0;
     }
@@ -49,7 +49,7 @@ public class Classe implements Comparable<Classe>
         this.sezione = sezione;
         this.aula = aula;
         this.sede = sede;
-        this.cordinatore = null;
+        this.coordinatore = null;
         this.elenco = new TreeSet<Studente>();
         this.numeroStudenti = 0;
     }
@@ -69,7 +69,7 @@ public class Classe implements Comparable<Classe>
         this.sezione = sezione;
         this.aula = 0;
         this.sede = null;
-        this.cordinatore = null;
+        this.coordinatore = null;
         this.elenco = new TreeSet<Studente>();
         this.numeroStudenti = 0;
     }
@@ -102,9 +102,9 @@ public class Classe implements Comparable<Classe>
      * @return coordinatore
      * Metodo get che ritorna il coordinatore della classe
      */
-    public Docente getCordinatore()
+    public Docente getCoordinatore()
     {
-        return this.cordinatore;
+        return this.coordinatore;
     }
 
     /**
@@ -113,9 +113,9 @@ public class Classe implements Comparable<Classe>
      * @param coordinatore
      * Metodo set che imposta il coordinatore della classe
      */
-    public void setCordinatore(Docente cordinatore)
+    public void setCoordinatore(Docente coordinatore)
     {
-        this.cordinatore = cordinatore;
+        this.coordinatore = coordinatore;
     }
 
     /**
@@ -132,7 +132,7 @@ public class Classe implements Comparable<Classe>
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param coordinatore
+     * @param sede
      * Metodo set che imposta la sede della classe
      */
     public void setSede(String sede)
@@ -242,7 +242,7 @@ public class Classe implements Comparable<Classe>
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param numerostudenti
+     * @param numeroStudenti
      * Metodo set che imposta il numero di studenti della classe
      */
     public void setNumeroStudenti(int numeroStudenti)
@@ -314,7 +314,7 @@ public class Classe implements Comparable<Classe>
      * @author Latino Francesco
      * @author Serrone Fabio
      * @throws IllegalArgumentException se il numero di studenti è maggiore di MAX_STUDENTI
-     * @param studente
+     * @param nuovo
      * Aggiunge uno studente all'elenco
      */
     public void aggiungi(Studente nuovo) throws IllegalArgumentException
@@ -333,7 +333,7 @@ public class Classe implements Comparable<Classe>
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param studente
+     * @param nuovo
      * Rimuove uno studente all'elenco
      */
     public void rimuovi(Studente nuovo)
@@ -379,8 +379,7 @@ public class Classe implements Comparable<Classe>
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param classe
-     * @param sezione
+     * @param altro
      * Compara due oggetti classe confrontando la sezione e l'anno del corso
      */
     @Override
@@ -420,7 +419,7 @@ public class Classe implements Comparable<Classe>
     private char sezione;
     private int aula;
     private String sede;
-    private Docente cordinatore;
+    private Docente coordinatore;
     private Set<Studente> elenco;
     private int numeroStudenti;
     public static final int MAX_STUDENTI = 35;

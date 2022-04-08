@@ -128,7 +128,6 @@ public class Studente extends Utente implements Comparable<Studente> {
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param matricola
      * Medoto set per la proprietà matricola, assegna il valore passato per parametro a matricola
      */
     public void assegnaMatricola()
@@ -139,7 +138,6 @@ public class Studente extends Utente implements Comparable<Studente> {
     /**
      * @author Latino Francesco
      * @author Serrone Fabio
-     * @param rappresentante
      * Ritorna lo stato di rappresentate
      */
     public boolean isRappresentante()

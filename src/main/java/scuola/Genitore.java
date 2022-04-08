@@ -1,13 +1,13 @@
 /**
  * Classe Genitore.java
- * @version: 1.0 
- * @author Lorenzo Bramato, Alfredo Russo 
+ * @version: 1.0
+ * @author Lorenzo Bramato, Alfredo Russo
  */
 
 package scuola;
 import java.util.GregorianCalendar;
 
-public class Genitore extends Utente 
+public class Genitore extends Utente
 {
     /**
      * Metodo costruttore della classe genitore
@@ -16,7 +16,6 @@ public class Genitore extends Utente
      * @param nome
      * @param sesso
      * @param data_nascita
-     * @param ruolo
      * @author Russo Alfredo
      * @author Bramato Lorenzo
      */
@@ -36,7 +35,6 @@ public class Genitore extends Utente
      * @param gg_nascita
      * @param mm_nascita
      * @param aaaa_nascita
-     * @param ruolo
      * @author Russo Alfredo
      * @author Bramato Lorenzo
      */
@@ -48,11 +46,11 @@ public class Genitore extends Utente
     }
 
     //Metodi get/set
-    public static int getMaxFigli() 
+    public static int getMaxFigli()
     {
         return Genitore.MAXFIGLI;
     }
-    
+
     /**
      * Metodo getFigli
      * @return figli
@@ -63,7 +61,7 @@ public class Genitore extends Utente
     {
         return this.figli;
     }
-    
+
     /**
      * Metodo getRapporto
      * @return rapporto
@@ -112,7 +110,7 @@ public class Genitore extends Utente
     public String toString()
     {
         String genitore = super.toString() + " " + "\n" + this.rapporto + " di: ";
-        
+
         for(int i = 0; i < this.numeroFigli; i++)
         {
             genitore += this.figli[i].toString() + ", ";
@@ -137,9 +135,9 @@ public class Genitore extends Utente
             return false;
     }
 
-    private static int MAXFIGLI = 10;    
+    private static int MAXFIGLI = 10;
     public enum figura {PADRE, MADRE, TUTORE}
     private Studente[] figli = new Studente[MAXFIGLI];
-    private figura rapporto; 
+    private figura rapporto;
     private int numeroFigli;
 }
