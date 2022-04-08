@@ -1,7 +1,7 @@
 package scuola;
 
 
-public class PercorsoDidattico 
+public class PercorsoDidattico
 {
    public PercorsoDidattico(int annoCorso, String indirizzo, String[] materie, int numeroMaterie , int[] monteOre)
    {
@@ -10,9 +10,9 @@ public class PercorsoDidattico
        this.materie=materie;
        this.numeroMaterie=numeroMaterie;
        this.monteOre=monteOre;
- 
+
    }
-   
+
    public PercorsoDidattico(int annoCorso,String indirizzo)
    {
        this.annoCorso=annoCorso;
@@ -41,7 +41,7 @@ public class PercorsoDidattico
         this.materie=materie;
         this.numeroMaterie=numeroMaterie;
     }
- 
+
    public String getIndirizzo()
    {
        return indirizzo;
@@ -62,7 +62,7 @@ public class PercorsoDidattico
    {
        return monteOre;
    }
-   
+
    public void setMonteOre(int[] monteOre)
    {
        this.monteOre=monteOre;
@@ -81,14 +81,14 @@ public class PercorsoDidattico
    public int getMonteOre(String materia)
    {
        int materia_selezionata;
-   
+
        for(int i=0; i<materie.length; i++ )
        {
             if(materie[i]==materia)
             {
                 materia_selezionata=i;
-            return materia_selezionata;        
-            }       
+            return materia_selezionata;
+            }
         }
         return -1;
    }
@@ -115,10 +115,10 @@ public class PercorsoDidattico
     {
         if(this == o)
             return true;
-        
+
         if(o == null)
             return false;
-        
+
         if(o instanceof PercorsoDidattico)
         {
             PercorsoDidattico an= (PercorsoDidattico) o;
@@ -140,10 +140,3 @@ public class PercorsoDidattico
    private int numeroMaterie;
    private int[] monteOre;
 }
-
-
-
-
-
-
-   
