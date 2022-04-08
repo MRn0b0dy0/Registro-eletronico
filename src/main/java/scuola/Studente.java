@@ -202,6 +202,9 @@ public class Studente extends Utente implements Comparable<Studente> {
 
     /**
      * Confronta per matricola, cognome, nome
+     * @author Latino Francesco
+     * @author Serrone Fabio
+     * @param altroStudente
      */
     @Override
     public int compareTo(Studente altroStudente) {

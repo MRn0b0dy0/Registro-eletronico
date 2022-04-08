@@ -10,7 +10,6 @@ public class PercorsoDidattico
        this.materie=materie;
        this.numeroMaterie=numeroMaterie;
        this.monteOre=monteOre;
-
    }
 
    public PercorsoDidattico(int annoCorso,String indirizzo)

@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-                                    /*Bug equals and bug matricole */
 public class GestioneFile
 {
 
@@ -318,7 +317,7 @@ public class GestioneFile
                 Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0), null);
 
                 //print the new student and new class using toString just for debug purposes
-                System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
+                //System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
                 for(int i = 0; i < nclassi; i++)
                 {
                     //trova la classe
@@ -328,7 +327,7 @@ public class GestioneFile
                         {
                             classi[i].aggiungi(nuovo);
                             //print the new student and new class just for debug purposes
-                            System.out.println("Iscrizione effettuata: " + nuovo.getCognome() + " " + nuovo.getNome() + " " + classi[i].getSezione() + " " + classi[i].getPercorso().getannoCorso() + "\n\n\n");
+                            //System.out.println("Iscrizione effettuata: " + nuovo.getCognome() + " " + nuovo.getNome() + " " + classi[i].getSezione() + " " + classi[i].getPercorso().getannoCorso() + "\n\n\n");
                             break;
                         }
                         catch(IndexOutOfBoundsException e)
@@ -338,13 +337,11 @@ public class GestioneFile
                     }
                 }
                 iscrizioni++;
-                //Thread.sleep(1); Solve the bug but it's not the best solution we couldn't find what is causing the bug
-
                 //print the class using toString just for debug purposes
-                for(int i = 0; i < nclassi; i++)
+                /*for(int i = 0; i < nclassi; i++)
                 {
                     System.out.println(classi[i]);
-                }
+                }*/
             }
             //PROBLEM ENDS
 	}

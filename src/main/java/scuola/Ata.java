@@ -6,10 +6,10 @@
 
 package scuola;
 import java.util.GregorianCalendar;
- 
 
-public class Ata extends Dipendente 
-{        
+
+public class Ata extends Dipendente
+{
     /**
      * primo metodo costruttore
      * @autor pellegrino jacopo
@@ -59,7 +59,7 @@ public class Ata extends Dipendente
     }
 
     /**
-     * metodo set 
+     * metodo set
      * @autor pellegrino jacopo
      * @param /
      * @return tipoRuolo
@@ -70,7 +70,7 @@ public class Ata extends Dipendente
      }
 
     /**
-     * metodo get 
+     * metodo get
      * @autor pellegrino jacopo
      * @param ruolo
      * @return /
@@ -88,14 +88,19 @@ public class Ata extends Dipendente
      */
     @Override
     public void calcolaStipendio()
-     {
-        this.stipendio = 25 * oresettimanali;        
-    }
-     
-    @Override
-    public float getStipendio() 
     {
-        return this.stipendio; 
+        if (ruolo == tipoRuolo.COLLABORATORE)
+            this.stipendio = 30 * oresettimanali;
+        else if (ruolo == tipoRuolo.ASSISTENTE_LABORATORIO)
+            this.stipendio = 40 * oresettimanali;
+        else if (ruolo == tipoRuolo.SEGRETERIA)
+            this.stipendio = 45 * oresettimanali;
+    }
+
+    @Override
+    public float getStipendio()
+    {
+        return this.stipendio;
     }
 
     /**
@@ -119,7 +124,7 @@ public class Ata extends Dipendente
     {
         if (this == Ata)
             return true;
-        
+
         if (Ata == null)
             return false;
 
@@ -131,7 +136,7 @@ public class Ata extends Dipendente
         return this.codiceFiscale == p.codiceFiscale;
     }
 
-    private int oresettimanali;    
+    private int oresettimanali;
     public enum tipoRuolo {COLLABORATORE, ASSISTENTE_LABORATORIO, SEGRETERIA};
-    private tipoRuolo ruolo;  
+    private tipoRuolo ruolo;
 }

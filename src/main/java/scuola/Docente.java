@@ -7,7 +7,7 @@ package scuola;
 import java.util.GregorianCalendar;
 
 
-public class Docente extends Dipendente 
+public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retributivo*/
 {
     /**
      * Metodo costruttore
@@ -18,7 +18,7 @@ public class Docente extends Dipendente
      * @param data_nascita
      * @param ruolo
      */
-    public Docente (String cf, String cognome, String nome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo) 
+    public Docente (String cf, String cognome, String nome, char sesso, GregorianCalendar data_nascita, tipoRuolo ruolo)
     {
         super(cf, cognome, nome, sesso, data_nascita);
         this.ruolo=ruolo;
@@ -35,7 +35,7 @@ public class Docente extends Dipendente
      * @param anno_nascita
      * @param ruolo
      */
-    public Docente (String cf, String cognome, String nome, char sesso, int giorno_nascita, int mese_nascita, int anno_nascita, tipoRuolo ruolo) 
+    public Docente (String cf, String cognome, String nome, char sesso, int giorno_nascita, int mese_nascita, int anno_nascita, tipoRuolo ruolo)
     {
         super(cf, cognome, nome, sesso, giorno_nascita, mese_nascita, anno_nascita);
         this.ruolo=ruolo;
@@ -47,7 +47,7 @@ public class Docente extends Dipendente
      * @param cognome
      * @param nome
      */
-    public Docente (String cf, String cognome, String nome) 
+    public Docente (String cf, String cognome, String nome)
     {
         super(cf, cognome, nome);
     }
@@ -56,17 +56,17 @@ public class Docente extends Dipendente
      * Metodo Get per il numero delle materie insegnate
      * @return numero materie insegnate
      */
-    public int getNumMaterieInsegnate() 
+    public int getNumMaterieInsegnate()
     {
         return this.numMaterieInsegnate;
     }
 
     /**
-     * Metodo Set per il numero delle materie insegnate 
+     * Metodo Set per il numero delle materie insegnate
      * @param numMaterieInsegnate Quante materie insegnate
      */
 
-    public void setNumMaterieInsegnate(int numMaterieInsegnate) 
+    public void setNumMaterieInsegnate(int numMaterieInsegnate)
     {
         this.numMaterieInsegnate = numMaterieInsegnate;
     }
@@ -75,7 +75,7 @@ public class Docente extends Dipendente
      * Metodo Get per le materie insegnate
      * @return Array di string delle materie insegnate
      */
-    public String[] getMaterie() 
+    public String[] getMaterie()
     {
         return this.materie;
     }
@@ -84,7 +84,7 @@ public class Docente extends Dipendente
      * Metodo Set per le materie insegnate
      * @param materie Array di String con le materie che il docente insegna
      */
-    public void setMaterie(String[] materie) 
+    public void setMaterie(String[] materie)
     {
         this.materie = materie;
     }
@@ -93,7 +93,7 @@ public class Docente extends Dipendente
      * Metodo Get per ruolo docente
      * @return Ruolo del docente
      */
-    public tipoRuolo getRuolo() 
+    public tipoRuolo getRuolo()
     {
         return this.ruolo;
     }
@@ -102,7 +102,7 @@ public class Docente extends Dipendente
      * Metodo Set per ruolo docente
      * @param ruolo Ruolo del docente
      */
-    public void setRuolo(tipoRuolo ruolo) 
+    public void setRuolo(tipoRuolo ruolo)
     {
         this.ruolo = ruolo;
     }
@@ -111,12 +111,12 @@ public class Docente extends Dipendente
      * Aggiungere abilitazione di una materia
      * @param material Nome materia da aggiungere
      */
-    public void aggiungiAbilitazione(String material) 
+    public void aggiungiAbilitazione(String material)
     {
-        if (numMaterieInsegnate < MAX_MATERIE) 
+        if (numMaterieInsegnate < MAX_MATERIE)
         {
             this.materie[numMaterieInsegnate] = material;
-            numMaterieInsegnate++; 
+            numMaterieInsegnate++;
         }
     }
 
@@ -125,23 +125,23 @@ public class Docente extends Dipendente
      * @param material Nome materia da rimuovere
      * @return vero se rimossa
      */
-    public boolean rimuoviAbilitazione(String material) 
+    public boolean rimuoviAbilitazione(String material)
     {
         int posizione = 0;
         boolean trovata = false;
-        
-        for (int i=0; i<numMaterieInsegnate && posizione == 0 && trovata == false; i++) 
+
+        for (int i=0; i<numMaterieInsegnate && posizione == 0 && trovata == false; i++)
         {
-            if (this.materie[i].equals(material)) 
+            if (this.materie[i].equals(material))
             {
                 posizione = i + 1;
                 trovata = true;
             }
         }
 
-        if (trovata == true) 
+        if (trovata == true)
         {
-            for (int i = posizione -1 ; i < this.numMaterieInsegnate - 1; i++) 
+            for (int i = posizione -1 ; i < this.numMaterieInsegnate - 1; i++)
             {
                 this.materie[i]=this.materie[i+1];
             }
@@ -151,15 +151,51 @@ public class Docente extends Dipendente
         return trovata;
     }
 
-    @Override
-    public void calcolaStipendio() 
+    /**
+     * Metodo get per il livello retributivo
+     * @return Livello retributivo
+     */
+    public LivelloContrattuale getLivello_retributivo()
     {
-        float fisso=500;
-        this.stipendio=fisso+1500;
+        return this.livello_retributivo;
     }
-    
+
+    /**
+     * Metodo set per il livello retributivo
+     * @param livello_retributivo Livello retributivo
+     */
+    public void setLivello_retributivo(LivelloContrattuale livello_retributivo)
+    {
+        this.livello_retributivo = livello_retributivo;
+    }
+
+    /**
+     * Metodo get per il numero di figli
+     * @return Numero di figli
+     */
+    public int getNumero_figli()
+    {
+        return this.numero_figli;
+    }
+
+    /**
+     * Metodo set per il numero di figli
+     * @param numero_figli Numero di figli
+     */
+    public void setNumero_figli(int numero_figli)
+    {
+        this.numero_figli = numero_figli;
+    }
+
+
     @Override
-    public float getStipendio() 
+    public void calcolaStipendio()
+    {
+        this.stipendio = livello_retributivo.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie() + livello_retributivo.getDetrazioni(numero_figli) - livello_retributivo.getTasse();
+    }
+
+    @Override
+    public float getStipendio()
     {
         return this.stipendio;
     }
@@ -169,10 +205,10 @@ public class Docente extends Dipendente
      * @return Stringa con tutti i dati
      */
     @Override
-    public String toString() 
+    public String toString()
     {
         String stampa = super.toString() + " " + this.ruolo + " " + this.numMaterieInsegnate + " ";
-        for (int i=0; i < numMaterieInsegnate; i++) 
+        for (int i=0; i < numMaterieInsegnate; i++)
         {
             stampa += materie[i] + "," + " ";
         }
@@ -184,14 +220,16 @@ public class Docente extends Dipendente
      * @return ritorna vero se l'uguaglianza è vera
      */
     @Override
-    public boolean equals (Object altro) 
+    public boolean equals (Object altro)
     {
         return super.equals(altro);
-    }    
+    }
 
     final static int MAX_MATERIE=10;
     public enum tipoRuolo {TEORIA, LABORATORIO};
     private tipoRuolo ruolo;
     private int numMaterieInsegnate;
     private String materie[] = new String[MAX_MATERIE];
+    private LivelloContrattuale livello_retributivo;
+    private int numero_figli;
 }
