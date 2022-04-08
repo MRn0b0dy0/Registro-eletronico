@@ -7,7 +7,7 @@ package scuola;
 import java.util.GregorianCalendar;
 
 
-public class Docente extends Dipendente 
+public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retributivo*/
 {
     /**
      * Metodo costruttore
@@ -151,11 +151,47 @@ public class Docente extends Dipendente
         return trovata;
     }
 
+    /**
+     * Metodo get per il livello retributivo
+     * @return Livello retributivo
+     */
+    public LivelloContrattuale getLivello_retributivo() 
+    {
+        return this.livello_retributivo;
+    }
+
+    /**
+     * Metodo set per il livello retributivo
+     * @param livello_retributivo Livello retributivo
+     */
+    public void setLivello_retributivo(LivelloContrattuale livello_retributivo) 
+    {
+        this.livello_retributivo = livello_retributivo;
+    }
+
+    /**
+     * Metodo get per il numero di figli
+     * @return Numero di figli
+     */
+    public int getNumero_figli() 
+    {
+        return this.numero_figli;
+    }
+
+    /**
+     * Metodo set per il numero di figli
+     * @param numero_figli Numero di figli
+     */
+    public void setNumero_figli(int numero_figli) 
+    {
+        this.numero_figli = numero_figli;
+    }
+
+
     @Override
     public void calcolaStipendio() 
     {
-        float fisso=500;
-        this.stipendio=fisso+1500;
+        this.stipendio = livello_retributivo.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie() + livello_retributivo.getDetrazioni(numero_figli) - livello_retributivo.getTasse();
     }
     
     @Override
@@ -194,4 +230,6 @@ public class Docente extends Dipendente
     private tipoRuolo ruolo;
     private int numMaterieInsegnate;
     private String materie[] = new String[MAX_MATERIE];
+    private LivelloContrattuale livello_retributivo;
+    private int numero_figli;
 }

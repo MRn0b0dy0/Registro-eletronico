@@ -356,6 +356,51 @@ public class Scuola {
                                 {
                                     try 
                                     {
+
+                                        Video.scriviStringa("\nInserisci la classe degli studenti da rendere rappresentati: \n");
+                                        Video.scriviStringa("Classe?");
+                                        int cla = Tastiera.leggiIntero();
+                                        Video.scriviStringa("Sezione?");
+                                        char sez = Tastiera.leggiCarattere();
+                                        int i = 0;
+                                        boolean trovata = false;
+                                        for (; i<numeroClassi && !trovata; i++) 
+                                        {
+                                            if (classiFormate[i].equals(cla, sez)) 
+                                            {
+                                                trovata = true;    
+                                                Video.scriviStringa(classiFormate[i].toString());
+                                            }
+                                        }
+                                        i--;
+                                        if (!trovata) 
+                                        {
+                                            Video.scriviStringa("Classe non formata!");
+                                            break;
+                                        }      
+                                        
+                                        Video.scriviStringa("Inserire le matricole dei due studenti da rendere rappresentanti: ");
+                                        Video.scriviStringa("\nMatricola primo studente? ");
+                                        int matricola1 = Tastiera.leggiIntero();
+                                        Video.scriviStringa("Matricola secondo studente? ");
+                                        int matricola2 = Tastiera.leggiIntero();
+
+                                        if(classiFormate[i].getStudenteDaMatricola(matricola1) == null || classiFormate[i].getStudenteDaMatricola(matricola2) == null) 
+                                        {
+                                            Video.scriviStringa("Uno degli studenti non esiste!");
+                                            break;
+                                        }
+
+                                        for (var student : classiFormate[i].getElenco()) 
+                                        {
+                                            if (student.isRappresentante())
+                                                student.resetRappresentante();    
+                                        }
+                                        
+                                        classiFormate[i].getStudenteDaMatricola(matricola1).setRappresentante();
+                                        classiFormate[i].getStudenteDaMatricola(matricola2).setRappresentante();
+                                        Video.scriviStringa("\nRappresentanti modificati!");
+                                        /*
                                         Video.scriviStringa("\nInserire matricola dello studente da promuovere a rappresentante di classe:");
                                         int matricola = Tastiera.leggiIntero();
                                         trovato = false;
@@ -380,7 +425,7 @@ public class Scuola {
                                         if(!trovato) 
                                         {
                                             Video.scriviStringa("Studente non trovato!");
-                                        }
+                                        }*/
                                     } 
                                     catch (Exception e) 
                                     {

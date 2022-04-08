@@ -88,8 +88,13 @@ public class Ata extends Dipendente
      */
     @Override
     public void calcolaStipendio()
-     {
-        this.stipendio = 25 * oresettimanali;        
+    {
+        if (ruolo == tipoRuolo.COLLABORATORE)
+            this.stipendio = 30 * oresettimanali;
+        else if (ruolo == tipoRuolo.ASSISTENTE_LABORATORIO)     
+            this.stipendio = 40 * oresettimanali;
+        else if (ruolo == tipoRuolo.SEGRETERIA)
+            this.stipendio = 45 * oresettimanali;
     }
      
     @Override

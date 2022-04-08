@@ -9,7 +9,8 @@ package scuola;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Utente extends GregorianCalendar{
+public class Utente
+{
     protected String codiceFiscale;
     protected String cognome;
     protected Calendar data_nascita = new GregorianCalendar();

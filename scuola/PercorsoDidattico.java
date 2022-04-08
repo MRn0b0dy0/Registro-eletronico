@@ -10,7 +10,6 @@ public class PercorsoDidattico
        this.materie=materie;
        this.numeroMaterie=numeroMaterie;
        this.monteOre=monteOre;
- 
    }
    
    public PercorsoDidattico(int annoCorso,String indirizzo)
@@ -125,9 +124,8 @@ public class PercorsoDidattico
 
             if(an.annoCorso==this.annoCorso)
                 return true;
-            if(an.indirizzo==this.indirizzo)
+            if(an.indirizzo.equals(this.indirizzo))
                 return true;
-            
         }
 
         return false;

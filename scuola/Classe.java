@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
                                         /*Anno corso*/
-public class Classe implements Comparable
+public class Classe implements Comparable<Classe>
 {    
     /**
      * @author Latino Francesco 
@@ -323,7 +323,7 @@ public class Classe implements Comparable
         {
             this.elenco.add(nuovo);
             nuovo.classe = this;
-            //nuovo.assegnaMatricola();
+            nuovo.assegnaMatricola();
             numeroStudenti++;
         }
         else
@@ -340,7 +340,7 @@ public class Classe implements Comparable
     { 
         elenco.remove(nuovo);
         nuovo.classe = null;
-    }
+    }   
 
     /**
      * @author Latino Francesco 
@@ -387,7 +387,7 @@ public class Classe implements Comparable
     public boolean equals(Object altro) 
     {
         if (altro == this)
-            return false;
+            return true;
         
         if (!(altro instanceof Classe))
             return false;
@@ -406,7 +406,7 @@ public class Classe implements Comparable
      * implementazione dell'interfaccia compare, ritorna 1 se la media dei voti dell'oggetto chiamnte e maggiore di quella dell'oggetto pasato per parametro, -1 se è minore e 0 se è uguale.
      */
     @Override
-    public int compareTo(Object altro) 
+    public int compareTo(Classe altro) 
     {
         if (altro == this)
             return 0;

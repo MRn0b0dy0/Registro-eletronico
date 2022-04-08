@@ -8,7 +8,7 @@ package scuola;
 import java.util.GregorianCalendar;
 
 
-public class Studente extends Utente {//implements Comparable<> { 
+public class Studente extends Utente implements Comparable<Studente> { 
         
     /**
      * @author Latino Francesco 
@@ -206,23 +206,21 @@ public class Studente extends Utente {//implements Comparable<> {
      * @param altro
      * implementazione dell'interfaccia compare, ritorna 1 se la media dei voti dell'oggetto chiamnte e maggiore di quella dell'oggetto pasato per parametro, -1 se è minore e 0 se è uguale.
      * @return ...
-     
-    public int compareTo(Object altro) {
-        if (altro == this)
+     */
+    @Override
+    public int compareTo(Studente altroStudente) 
+    {
+        if (this.equals(altroStudente))
             return 0;
-    
-        if (!(altro instanceof Studente))
-            return -1;
-
-        Studente altroStudente = (Studente) altro;
-        if (this.pagella.mediaVoti() > altroStudente.mediaVoti())
-            return 1;
-        else if (this.pagella.mediaVoti() < altroStudente.mediaVoti())
-            return -1;
+        else if (this.getNome().compareTo(altroStudente.getNome()) != 0)
+            return this.getNome().compareTo(altroStudente.getNome());
+        else if (this.getCognome().compareTo(altroStudente.getCognome()) != 0)
+            return this.getCognome().compareTo(altroStudente.getCognome());
         else 
-            return 0;
+            return Integer.compare(matricola, altroStudente.matricola);
     }
-    */
+    
+    
 
      /**
      * @author Latino Francesco 
