@@ -18,6 +18,24 @@ import java.io.IOException;
 public class Scuola {
   public static final String BASE_DIR = "src/main/resources/";
 
+    private static int studentiIscritti = 0;
+
+    public static int getStudentiIscritti() {
+        return studentiIscritti;
+    }
+
+    public static void setStudentiIscritti(int studentiIscritti) {
+        Scuola.studentiIscritti = studentiIscritti;
+    }
+
+    public static int incrementaStudentiIscritti() {
+        return ++studentiIscritti;
+    }
+
+    public static int decrementaStudentiIscritti() {
+        return --studentiIscritti;
+    }
+
     /**
      * @param args the command line arguments
      */

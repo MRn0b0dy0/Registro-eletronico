@@ -24,6 +24,7 @@ public class Studente extends Utente implements Comparable<Studente> {
     public Studente(String codiceFiscale, String cognome, String nome, char sesso, GregorianCalendar data_nascita)
     {
         super(codiceFiscale, cognome, nome, sesso, data_nascita);
+        assegnaMatricola();
     }
 
     /**
@@ -42,6 +43,7 @@ public class Studente extends Utente implements Comparable<Studente> {
     public Studente(String codiceFiscale, String cognome, String nome, char sesso, int gg_nascita, int mese_nascita, int aaaa_nascita)
     {
         super(codiceFiscale, cognome, nome, sesso, new GregorianCalendar(aaaa_nascita, mese_nascita, gg_nascita));
+        assegnaMatricola();
     }
 
     /**
@@ -56,6 +58,7 @@ public class Studente extends Utente implements Comparable<Studente> {
     public Studente(String codiceFiscale, String cognome, String nome)
     {
         super(codiceFiscale, cognome, nome);
+        assegnaMatricola();
     }
 
     /**
@@ -130,9 +133,9 @@ public class Studente extends Utente implements Comparable<Studente> {
      * @author Serrone Fabio
      * Medoto set per la proprietà matricola, assegna il valore passato per parametro a matricola
      */
-    public void assegnaMatricola()
+    private void assegnaMatricola()
     {
-        this.matricola = ++Studente.studentiIscritti;
+        matricola = ++matricolaAttuale;
     }
 
     /**
@@ -163,28 +166,6 @@ public class Studente extends Utente implements Comparable<Studente> {
     public void setRappresentante()
     {
         this.rappresentante = true;
-    }
-
-    /**
-     * @author Latino Francesco
-     * @author Serrone Fabio
-     * @return studentiIscritti
-     * Metodo get statico per la proprietà studentiIscritti
-     */
-    public static int getStudentiIscritti()
-    {
-        return Studente.studentiIscritti;
-    }
-
-    /**
-     * @author Latino Francesco
-     * @author Serrone Fabio
-     * @param studentiIscritti
-     * Medoto set per la proprietà studentiIscritti, assegna il valore passato per parametro a studentiIscritti
-     */
-    public static void setStudentiIscritti(int studentiIscritti)
-    {
-        Studente.studentiIscritti = studentiIscritti;
     }
 
     /**
@@ -253,7 +234,7 @@ public class Studente extends Utente implements Comparable<Studente> {
             return this.nome.equals(altroStudente.nome) && this.cognome.equals(altroStudente.cognome);
     }
 
-    private static int studentiIscritti = 0;
+    private static int matricolaAttuale = 0;
     private Genitore[] parentela;
     protected Classe classe;
     private Pagella pagella;

@@ -323,8 +323,8 @@ public class Classe implements Comparable<Classe>
         {
             this.elenco.add(nuovo);
             nuovo.classe = this;
-            nuovo.assegnaMatricola();
             numeroStudenti++;
+            Scuola.incrementaStudentiIscritti();
         }
         else
             throw new IllegalArgumentException();
@@ -340,6 +340,8 @@ public class Classe implements Comparable<Classe>
     {
         elenco.remove(nuovo);
         nuovo.classe = null;
+        numeroStudenti--;
+        Scuola.decrementaStudentiIscritti();
     }
 
     /**

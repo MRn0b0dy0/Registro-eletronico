@@ -358,6 +358,11 @@ public class GestioneFile
                 }
             }
         }
+
+        for(int i = 0; i < nclassi; i++)
+            System.out.println(classi[i]);
+        System.out.println("Studenti iscritti: " + Scuola.getStudentiIscritti());
+
         return iscrizioni;
     }
 }
