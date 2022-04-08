@@ -8,8 +8,8 @@ package scuola;
 import java.util.Set;
 import java.util.TreeSet;
 
-                                        /*Anno corso*/
-public class Classe implements Comparable
+/*Anno corso*/
+public class Classe implements Comparable<Classe>
 {
     /**
      * @author Latino Francesco
@@ -406,25 +406,14 @@ public class Classe implements Comparable
      * implementazione dell'interfaccia compare, ritorna 1 se la media dei voti dell'oggetto chiamnte e maggiore di quella dell'oggetto pasato per parametro, -1 se è minore e 0 se è uguale.
      */
     @Override
-    public int compareTo(Object altro)
+    public int compareTo(Classe altro)
     {
         if (altro == this)
             return 0;
-
-        if (!(altro instanceof Classe))
-            return -1;
-
-        Classe c = (Classe) altro;
-        if (aula > c.aula)
-            return 1;
-        else if (aula < c.aula)
-            return -1;
-        else if (sezione > c.sezione)
-            return 1;
-        else if (sezione < c.sezione)
-            return -1;
-        else
-            return 0;
+        int result = Integer.compare(aula, altro.aula);
+        if (result != 0)
+            return result;
+        return Character.compare(sezione, altro.sezione);
     }
 
     private PercorsoDidattico percorso;
