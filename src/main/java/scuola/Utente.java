@@ -13,12 +13,20 @@ public class Utente
 {
     protected String codiceFiscale;
     protected String cognome;
-    protected Calendar data_nascita = new GregorianCalendar();
+    protected Calendar data_nascita;
     protected String nome;
     protected char sesso;
     protected String email;
     protected String password;
 
+
+    public Utente(String codiceFiscale, String cognome, String nome){
+        this(codiceFiscale, cognome, nome, 'X', new GregorianCalendar());
+    }
+
+    public Utente(String codiceFiscale, String cognome, String nome, char sesso, int gg_nascita, int mm_nascita, int aaaa_nascita){
+        this(codiceFiscale, cognome, nome, sesso, new GregorianCalendar(aaaa_nascita, mm_nascita, gg_nascita));
+    }
 
     public Utente(String codiceFiscale, String cognome, String nome, char sesso, Calendar data_nascita){
         this.codiceFiscale=codiceFiscale;
@@ -26,19 +34,6 @@ public class Utente
         this.nome=nome;
         this.sesso=sesso;
         this.data_nascita=data_nascita;
-    }
-
-    public Utente(String codiceFiscale, String cognome, String nome, char sesso, int gg_nascita, int mm_nascita, int aaaa_nascita){
-        this.codiceFiscale=codiceFiscale;
-        this.cognome=cognome;
-        this.nome=nome;
-        this.data_nascita.set(aaaa_nascita, mm_nascita, gg_nascita);
-    }
-
-    public Utente(String codiceFiscale, String cognome, String nome){
-        this.codiceFiscale=codiceFiscale;
-        this.cognome=cognome;
-        this.nome=nome;
     }
 
     public String getCodiceFiscale() {
@@ -131,9 +126,7 @@ public class Utente
                 return false;
         } else if (!nome.equals(other.nome))
             return false;
-        if (sesso != other.sesso)
-            return false;
-        return true;
+        return sesso == other.sesso;
     }
 
 

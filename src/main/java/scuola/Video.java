@@ -23,7 +23,7 @@ public class Video {
         */
 	public static void scriviIntero(int n) {
             Integer x = n;
-            System.out.print(x.toString());
+            System.out.print(x);
             System.out.flush();
 	}	
 	/**
@@ -32,7 +32,7 @@ public class Video {
 	*/
 	public static void scriviReale(float n) {
             Float x = n;		  
-            System.out.print(x.toString());
+            System.out.print(x);
             System.out.flush();
 	}
         /**
@@ -41,7 +41,7 @@ public class Video {
 	*/
 	public static void scriviReale(double n) {
             Double x = n;
-            System.out.print(x.toString());
+            System.out.print(x);
             System.out.flush();
 	}
 	/**

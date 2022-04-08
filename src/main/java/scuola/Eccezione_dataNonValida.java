@@ -8,6 +8,10 @@ package scuola;
 
 public class Eccezione_dataNonValida extends Exception 
 {
+	final int g;
+	final int m;
+	final int a;
+
 	public Eccezione_dataNonValida(int g, int m, int a)
 	{
 		super();
@@ -25,8 +29,4 @@ public class Eccezione_dataNonValida extends Exception
 	{
 		return "Data non valida!";
 	}
-
-	int g;
-	int m;
-	int a;
 }

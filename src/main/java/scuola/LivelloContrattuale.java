@@ -26,10 +26,11 @@ public class LivelloContrattuale {
     public float getCompetenzeAccessorie() 
     {
         this.competenze_accessorie=0;
+        // FIXME: Duplicate condition: livello==inquadramento.DOCENTE_RUOLO
         if (this.livello==inquadramento.DOCENTE_RUOLO) 
-            return ((float) this.competenze_accessorie + 300); //euro in più
+            return (this.competenze_accessorie + 300); //euro in più
         else if (livello==inquadramento.DOCENTE_RUOLO)
-            return ((float) this.competenze_accessorie + 700); //euro in più
+            return (this.competenze_accessorie + 700); //euro in più
         return this.competenze_accessorie;
     }
     
@@ -56,7 +57,8 @@ public class LivelloContrattuale {
         return this.detrazioni_fiscali;
     }
 
-    public enum inquadramento {DOCENTE_SUPPLENTE, DOCENTE_RUOLO, DIRIGENTE};
+    public enum inquadramento {DOCENTE_SUPPLENTE, DOCENTE_RUOLO, DIRIGENTE}
+
     private inquadramento livello;  
     private static final float competenze_fisse = 1500; //mensili; compenso di funzione = per tutti i docenti
     private float competenze_accessorie;                //mensili

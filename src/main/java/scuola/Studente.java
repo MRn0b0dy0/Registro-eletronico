@@ -254,7 +254,7 @@ public class Studente extends Utente implements Comparable<Studente> {
     }
 
     private static int studentiIscritti = 0;
-    private Genitore parentela[];
+    private Genitore[] parentela;
     protected Classe classe;
     private Pagella pagella;
     private int matricola;

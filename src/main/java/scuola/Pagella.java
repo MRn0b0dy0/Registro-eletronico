@@ -143,12 +143,12 @@ public class Pagella
     @Override
     public String toString() 
     {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.numeroMaterie; i++) 
         {
-            result += this.materie[i] + ": " + this.voti[i] + "\n";
+            result.append(this.materie[i]).append(": ").append(this.voti[i]).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
     @Override

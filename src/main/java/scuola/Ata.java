@@ -12,7 +12,7 @@ public class Ata extends Dipendente
 {
     /**
      * primo metodo costruttore
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param codiceFiscale
      * @param nome
      * @param cognome
@@ -29,7 +29,7 @@ public class Ata extends Dipendente
 
     /**
      * secondo metodo costruttore
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param codiceFiscale
      * @param nome
      * @param cognome
@@ -46,7 +46,7 @@ public class Ata extends Dipendente
 
     /**
      * terzo metodo costruttore
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param codiceFiscale
      * @param nome
      * @param cognome
@@ -59,7 +59,7 @@ public class Ata extends Dipendente
 
     /**
      * metodo set
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param /
      * @return tipoRuolo
      */
@@ -70,7 +70,7 @@ public class Ata extends Dipendente
 
     /**
      * metodo get
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param ruolo
      * @return /
      */
@@ -81,7 +81,7 @@ public class Ata extends Dipendente
 
      /**
      * metodo per il calcolo dello stipendio
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param /
      * @return /
      */
@@ -104,7 +104,7 @@ public class Ata extends Dipendente
 
     /**
      * metodo tostring
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @return string
      */
     @Override
@@ -115,7 +115,7 @@ public class Ata extends Dipendente
 
     /**
      * metodo equals
-     * @autor pellegrino jacopo
+     * @author pellegrino jacopo
      * @param Ata
      * @return boolean
      */
@@ -132,10 +132,11 @@ public class Ata extends Dipendente
 
         Ata p = (Ata)Ata;
 
-        return this.codiceFiscale == p.codiceFiscale;
+        return this.codiceFiscale.equals(p.codiceFiscale);
     }
 
     private int oresettimanali;
-    public enum tipoRuolo {COLLABORATORE, ASSISTENTE_LABORATORIO, SEGRETERIA};
+    public enum tipoRuolo {COLLABORATORE, ASSISTENTE_LABORATORIO, SEGRETERIA}
+
     private tipoRuolo ruolo;
 }

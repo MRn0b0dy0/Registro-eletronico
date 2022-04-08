@@ -109,14 +109,14 @@ public class Genitore extends Utente
     @Override
     public String toString()
     {
-        String genitore = super.toString() + " " + "\n" + this.rapporto + " di: ";
+        StringBuilder genitore = new StringBuilder(super.toString() + " " + "\n" + this.rapporto + " di: ");
 
         for(int i = 0; i < this.numeroFigli; i++)
         {
-            genitore += this.figli[i].toString() + ", ";
+            genitore.append(this.figli[i].toString()).append(", ");
         }
 
-        return genitore;
+        return genitore.toString();
     }
 
     /**
@@ -130,12 +130,12 @@ public class Genitore extends Utente
     public boolean equals(Object altro)
     {
         if (altro instanceof Genitore)
-            return super.equals((Utente)altro);
+            return super.equals(altro);
         else
             return false;
     }
 
-    private static int MAXFIGLI = 10;
+    private static final int MAXFIGLI = 10;
     public enum figura {PADRE, MADRE, TUTORE}
     private Studente[] figli = new Studente[MAXFIGLI];
     private figura rapporto;

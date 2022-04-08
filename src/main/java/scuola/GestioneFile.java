@@ -24,7 +24,7 @@ public class GestioneFile
      * @return il numero delle classi lette dal file
      * @throws FileNotFoundException
      */
-    public static int leggiClassi(String nomeFile, Classe[] classi) throws FileNotFoundException, IOException
+    public static int leggiClassi(String nomeFile, Classe[] classi) throws IOException
     {
 
         BufferedReader br = null;
@@ -67,7 +67,7 @@ public class GestioneFile
      * @return il numero di docenti letti dal file
      * @throws FileNotFoundException
      */
-    public static int leggiOrganico(String nomeFile, Docente[] docenti) throws FileNotFoundException, IOException {
+    public static int leggiOrganico(String nomeFile, Docente[] docenti) throws IOException {
 
         BufferedReader br = null;
 	String riga = "";
@@ -112,7 +112,7 @@ public class GestioneFile
      * @return il numero di insegnamenti (associazione docente-classe) lette dal file
      * @throws FileNotFoundException
      */
-    public static int leggiCattedre(String nomeFile, Docente[] docenti, Insegnamento[] cattedre) throws FileNotFoundException, IOException {
+    public static int leggiCattedre(String nomeFile, Docente[] docenti, Insegnamento[] cattedre) throws IOException {
 
         BufferedReader br = null;
 	String riga = "";
@@ -139,7 +139,7 @@ public class GestioneFile
                     }
                 Insegnamento nuovo;
                 if (trovato) {
-                    Classe c = new Classe(Integer.valueOf(campi[2]),campi[3].charAt(0),null);
+                    Classe c = new Classe(Integer.parseInt(campi[2]),campi[3].charAt(0),null);
                     nuovo = new Insegnamento(d, c, campi[1]);
                     nuovo.setOre(Integer.parseInt(campi[4]));
                     cattedre[i] = nuovo;
@@ -170,7 +170,7 @@ public class GestioneFile
      * @return il numero di righe lette dal file
      * @throws FileNotFoundException
      */
-    public static int leggiAbilitazioni(String nomeFile, String[] IDdocenti, String[] materie) throws FileNotFoundException, IOException {
+    public static int leggiAbilitazioni(String nomeFile, String[] IDdocenti, String[] materie) throws IOException {
 
         BufferedReader br = null;
 	String riga = "";
@@ -264,7 +264,6 @@ public class GestioneFile
         BufferedReader br = null;
         try{//apertura file
             br=new BufferedReader(new FileReader(nomeFile));
-            righe=0;
             while((riga=br.readLine())!=null){//conta righe file
                  righe++;
             }
@@ -292,7 +291,7 @@ public class GestioneFile
      *         IndexOutOfBoundsException problemi di inserimento dell'alunno nella classe specificata
      *         Exception problemi con la data di nasciita dello studente
      */
-    public static int importaIscrizioniAlunni(String nomeFile, Classe[] classi, int nclassi) throws FileNotFoundException,IOException,IndexOutOfBoundsException,Exception {
+    public static int importaIscrizioniAlunni(String nomeFile, Classe[] classi, int nclassi) throws IOException,IndexOutOfBoundsException,Exception {
 
         BufferedReader br = null;
 	    String riga = "";
@@ -303,7 +302,6 @@ public class GestioneFile
         {
             br = new BufferedReader(new FileReader(nomeFile));
 
-            //PROBLEM STARTS
             while ((riga = br.readLine()) != null)
             {
                 String[] campi = riga.split(",");
@@ -312,12 +310,12 @@ public class GestioneFile
                 // campi[3] => sesso
                 // data nascita: campi[4] => giorno campi[5] => mese campi[6] => anno
                 // campi[7] => classe campi[8] => sezione
-                Studente nuovo = new Studente(campi[0], campi[1], campi[2], campi[3].charAt(0), Integer.valueOf(campi[4]), Integer.valueOf(campi[5]), Integer.valueOf(campi[6]));
+                Studente nuovo = new Studente(campi[0], campi[1], campi[2], campi[3].charAt(0), Integer.parseInt(campi[4]), Integer.parseInt(campi[5]), Integer.parseInt(campi[6]));
 
                 Classe classe_scelta = new Classe(Integer.parseInt(campi[7]), campi[8].charAt(0), null);
 
                 //print the new student and new class using toString just for debug purposes
-                System.out.println("input: " + nuovo .toString()+ " " + classe_scelta.toString());
+                //System.out.println("input: " + nuovo + " " + classe_scelta);
                 for(int i = 0; i < nclassi; i++)
                 {
                     //trova la classe
@@ -338,13 +336,12 @@ public class GestioneFile
                 }
                 iscrizioni++;
                 //print the class using toString just for debug purposes
+                /*
                 for(int i = 0; i < nclassi; i++)
-                {
                     System.out.println(classi[i]);
+                */
                 }
             }
-            //PROBLEM ENDS
-	}
     catch (FileNotFoundException e)
     {
             throw new FileNotFoundException();

@@ -83,7 +83,7 @@ public class PercorsoDidattico
 
        for(int i=0; i<materie.length; i++ )
        {
-            if(materie[i]==materia)
+            if(materie[i].equals(materia))
             {
                 materia_selezionata=i;
             return materia_selezionata;
@@ -98,7 +98,7 @@ public class PercorsoDidattico
         int n_elementi=0;
         boolean trovato=false;
 
-        for(int i = 0; trovato != true && i < 1000; i++)
+        for(int i = 0; !trovato && i < 1000; i++)
         {
             if(this.materie[i] == null)
             {

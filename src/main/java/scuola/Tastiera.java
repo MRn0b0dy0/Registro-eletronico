@@ -14,11 +14,10 @@ public class Tastiera {
        private final static BufferedReader bufferTastiera = new BufferedReader(input);
        
        public static String leggiStringa() throws IOException  {
-            String stringaLetta=null;
+            String stringaLetta;
             try {            
                 stringaLetta = bufferTastiera.readLine();
             } catch (IOException e) {
-                stringaLetta = null;
                 throw new IOException();
             }
             return stringaLetta;
@@ -29,7 +28,6 @@ public class Tastiera {
             try {    
                c = leggiStringa().charAt(0);
             } catch (IOException e) {
-               c='\0';
                throw new IOException();
             }
             return c;
@@ -37,8 +35,7 @@ public class Tastiera {
        
        public static int leggiIntero() throws IOException, NumberFormatException {
             try {
-                int n = Integer.valueOf(leggiStringa()); 
-                return n;
+                return Integer.valueOf(leggiStringa());
             } catch (IOException e) {
                throw new IOException();
             } catch(NumberFormatException e) {
@@ -48,7 +45,7 @@ public class Tastiera {
        
        public static float leggiReale() throws IOException, NumberFormatException {
             try {
-               return Float.valueOf(leggiStringa()); 
+               return Float.parseFloat(leggiStringa());
             } catch (IOException e) {
                throw new IOException();
             } catch(NumberFormatException e) {

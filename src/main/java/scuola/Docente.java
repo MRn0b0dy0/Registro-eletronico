@@ -130,7 +130,7 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
         int posizione = 0;
         boolean trovata = false;
 
-        for (int i=0; i<numMaterieInsegnate && posizione == 0 && trovata == false; i++)
+        for (int i = 0; i<numMaterieInsegnate && posizione == 0 && !trovata; i++)
         {
             if (this.materie[i].equals(material))
             {
@@ -139,12 +139,10 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
             }
         }
 
-        if (trovata == true)
+        if (trovata)
         {
-            for (int i = posizione -1 ; i < this.numMaterieInsegnate - 1; i++)
-            {
-                this.materie[i]=this.materie[i+1];
-            }
+            if (this.numMaterieInsegnate - 1 - (posizione - 1) >= 0)
+                System.arraycopy(this.materie, posizione - 1 + 1, this.materie, posizione - 1, this.numMaterieInsegnate - 1 - (posizione - 1));
             numMaterieInsegnate--;
         }
 
@@ -191,7 +189,7 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
     @Override
     public void calcolaStipendio()
     {
-        this.stipendio = livello_retributivo.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie() + livello_retributivo.getDetrazioni(numero_figli) - livello_retributivo.getTasse();
+        this.stipendio = LivelloContrattuale.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie() + livello_retributivo.getDetrazioni(numero_figli) - livello_retributivo.getTasse();
     }
 
     @Override
@@ -207,12 +205,12 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
     @Override
     public String toString()
     {
-        String stampa = super.toString() + " " + this.ruolo + " " + this.numMaterieInsegnate + " ";
+        StringBuilder stampa = new StringBuilder(super.toString() + " " + this.ruolo + " " + this.numMaterieInsegnate + " ");
         for (int i=0; i < numMaterieInsegnate; i++)
         {
-            stampa += materie[i] + "," + " ";
+            stampa.append(materie[i]).append(",").append(" ");
         }
-        return stampa;
+        return stampa.toString();
     }
 
     /**
@@ -226,10 +224,11 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
     }
 
     final static int MAX_MATERIE=10;
-    public enum tipoRuolo {TEORIA, LABORATORIO};
+    public enum tipoRuolo {TEORIA, LABORATORIO}
+
     private tipoRuolo ruolo;
     private int numMaterieInsegnate;
-    private String materie[] = new String[MAX_MATERIE];
+    private String[] materie = new String[MAX_MATERIE];
     private LivelloContrattuale livello_retributivo;
     private int numero_figli;
 }

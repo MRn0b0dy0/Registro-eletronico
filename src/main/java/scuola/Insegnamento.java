@@ -117,7 +117,7 @@ package scuola;
     @Override
     public boolean equals(Object o)
     {
-        if(o==null || !(o instanceof Insegnamento))
+        if(!(o instanceof Insegnamento))
             return false;
 
         Insegnamento altro = (Insegnamento) o;

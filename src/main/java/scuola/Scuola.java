@@ -2,20 +2,19 @@
  * Gestione di una segreteria didattica
  * Classe 4A, 2022
  */
-/**
- * Classe applicazione
- * @author classe 4A
- */
-/**
- * To Do:
- * Sincoronizare pagella e studente
+/*
+  To Do:
+  Sincoronizare pagella e studente
  */
 
 package scuola;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
+/**
+ *   Classe applicazione
+ *   @author classe 4A
+ */
 public class Scuola {
   public static final String BASE_DIR = "src/main/resources/";
 
@@ -28,7 +27,7 @@ public class Scuola {
         Classe[] classiFormate = new Classe[MAX_CLASSI];
         PercorsoDidattico[] percorsi = new PercorsoDidattico[MAX_CLASSI];
 
-        /**** importa dati segreteria   *****/
+        // importa dati segreteria
         //crea l'elenco delle classi formate
         int numeroClassi = 0;
 

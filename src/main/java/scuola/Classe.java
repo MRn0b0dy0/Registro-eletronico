@@ -29,7 +29,7 @@ public class Classe implements Comparable<Classe>
         this.aula = aula;
         this.sede = sede;
         this.coordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
         this.numeroStudenti = 0;
     }
 
@@ -50,7 +50,7 @@ public class Classe implements Comparable<Classe>
         this.aula = aula;
         this.sede = sede;
         this.coordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
         this.numeroStudenti = 0;
     }
 
@@ -70,7 +70,7 @@ public class Classe implements Comparable<Classe>
         this.aula = 0;
         this.sede = null;
         this.coordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
         this.numeroStudenti = 0;
     }
 
@@ -269,7 +269,7 @@ public class Classe implements Comparable<Classe>
     public Studente getStudente(int posizione){
         if (posizione < MAX_STUDENTI)
         {
-            Studente[] st = elenco.toArray(new Studente[elenco.size()]);
+            Studente[] st = elenco.toArray(new Studente[0]);
             return st[posizione];
         }
         else
@@ -351,9 +351,7 @@ public class Classe implements Comparable<Classe>
      */
     public boolean equals(int classe, char sezione)
     {
-        if (classe == percorso.getannoCorso() && Character.toLowerCase(sezione) == Character.toLowerCase(this.sezione))
-            return true;
-        return false;
+        return classe == percorso.getannoCorso() && Character.toLowerCase(sezione) == Character.toLowerCase(this.sezione);
     }
 
     /**
@@ -364,16 +362,16 @@ public class Classe implements Comparable<Classe>
     @Override
     public String toString()
     {
-        String result = "Classe " + this.getClasseSezione()+"\n";
+        StringBuilder result = new StringBuilder("Classe " + this.getClasseSezione() + "\n");
         int i = 1;
 
         for (Studente studente : elenco)
         {
-            result += i + ": " + studente.toString() + "\n";
+            result.append(i).append(": ").append(studente.toString()).append("\n");
             i++;
         }
 
-        return result;
+        return result.toString();
     }
 
     /**
@@ -393,9 +391,7 @@ public class Classe implements Comparable<Classe>
 
         Classe classe = (Classe) altro;
 
-        if (percorso.getannoCorso() == classe.percorso.getannoCorso() && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione))
-            return true;
-        return false;
+        return percorso.getannoCorso() == classe.percorso.getannoCorso() && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione);
     }
 
      /**
