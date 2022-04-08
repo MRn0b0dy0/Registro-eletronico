@@ -122,12 +122,7 @@ public class PercorsoDidattico
         if(o instanceof PercorsoDidattico)
         {
             PercorsoDidattico an= (PercorsoDidattico) o;
-
-            if(an.annoCorso==this.annoCorso)
-                return true;
-            if(an.indirizzo==this.indirizzo)
-                return true;
-            
+            return an.annoCorso == this.annoCorso && an.indirizzo.equals(this.indirizzo);
         }
 
         return false;

@@ -387,7 +387,7 @@ public class Classe implements Comparable
     public boolean equals(Object altro)
     {
         if (altro == this)
-            return false;
+            return true;
 
         if (!(altro instanceof Classe))
             return false;
