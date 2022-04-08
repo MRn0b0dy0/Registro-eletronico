@@ -106,7 +106,7 @@ package scuola;
     @Override
     public String toString()
     {
-        return docente.getCognome()+" "+docente.getNome()+" insegna "+this.materia+" in "+this.classe.getClasseSezione();
+        return docente.getCognome()+" "+docente.getNome()+" insegna "+this.materia+" in "+this.classe.getClasseSezione() + " Codice fiscale: " + docente.getCodiceFiscale();
     }
 
     /**

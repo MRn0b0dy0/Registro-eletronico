@@ -5,6 +5,7 @@
  */
 
 package scuola;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,11 +26,12 @@ public class Classe implements Comparable<Classe>
     public Classe(int classe, char sezione, String indirizzo, int aula, String sede) 
     {
         this.percorso = new PercorsoDidattico(classe, indirizzo);
+        this.rappresentanti = new ArrayList<>();
         this.sezione = sezione;
         this.aula = aula;
         this.sede = sede;
         this.cordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
         this.numeroStudenti = 0;
     }
 
@@ -50,7 +52,8 @@ public class Classe implements Comparable<Classe>
         this.aula = aula;
         this.sede = sede;
         this.cordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
+        this.rappresentanti = new ArrayList<>();
         this.numeroStudenti = 0;    
     }
 
@@ -70,7 +73,8 @@ public class Classe implements Comparable<Classe>
         this.aula = 0;
         this.sede = null;
         this.cordinatore = null;
-        this.elenco = new TreeSet<Studente>();
+        this.elenco = new TreeSet<>();
+        this.rappresentanti = new ArrayList<>();
         this.numeroStudenti = 0;
     }
 
@@ -269,7 +273,7 @@ public class Classe implements Comparable<Classe>
     public Studente getStudente(int posizione){
         if (posizione < MAX_STUDENTI)
         {
-            Studente[] st = elenco.toArray(new Studente[elenco.size()]);
+            Studente[] st = elenco.toArray(new Studente[0]);
             return st[posizione];
         }
         else
@@ -340,6 +344,7 @@ public class Classe implements Comparable<Classe>
     { 
         elenco.remove(nuovo);
         nuovo.classe = null;
+        numeroStudenti--;
     }   
 
     /**
@@ -351,9 +356,24 @@ public class Classe implements Comparable<Classe>
      */
     public boolean equals(int classe, char sezione)
     {
-        if (classe == percorso.getannoCorso() && Character.toLowerCase(sezione) == Character.toLowerCase(this.sezione))
-            return true;
-        return false;
+        return classe == percorso.getannoCorso() && Character.toLowerCase(sezione) == Character.toLowerCase(this.sezione);
+    }
+
+    public void setRappresentante(Studente rapp)
+    {
+        rapp.rappresentante = true;
+        rappresentanti.add(rapp);
+    }
+
+    public void resetRappresentante(Studente rapp)
+    {
+        rapp.rappresentante = false;
+        rappresentanti.remove(rapp);
+    }
+
+    public ArrayList<Studente> getRappesentanti()
+    {
+        return this.rappresentanti;
     }
 
     /**
@@ -366,13 +386,24 @@ public class Classe implements Comparable<Classe>
     {        
         String result = "Classe " + this.getClasseSezione()+"\n";
         int i = 1;
+        int maschi = 0;
+        int femmine = 0;
 
         for (Studente studente : elenco) 
         {
+            String sesso = Character.toString(studente.getSesso());
+
+            if (sesso.equalsIgnoreCase("m"))
+                maschi++;
+            else
+                femmine++;
+
+
             result += i + ": " + studente.toString() + "\n";
             i++;
         }
-
+        
+        result += "Maschi = " + maschi + ", " + "Femmine = " + femmine + "\n"; 
         return result;
     }
 
@@ -394,9 +425,7 @@ public class Classe implements Comparable<Classe>
 
         Classe classe = (Classe) altro;
 
-        if (percorso.getannoCorso() == classe.percorso.getannoCorso() && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione))
-            return true;
-        return false;
+        return percorso.getannoCorso() == classe.percorso.getannoCorso() && Character.toLowerCase(this.sezione) == Character.toLowerCase(classe.sezione);
     }
 
      /**
@@ -410,21 +439,12 @@ public class Classe implements Comparable<Classe>
     {
         if (altro == this)
             return 0;
-    
-        if (!(altro instanceof Classe))
-            return -1;
 
-        Classe c = (Classe) altro;
-        if (aula > c.aula)
-            return 1;
-        else if (aula < c.aula)
-            return -1;
-        else if (sezione > c.sezione)
-            return 1;
-        else if (sezione < c.sezione)
-            return -1;
-        else 
-            return 0;
+        int result = Integer.compare(aula, altro.aula);
+
+        if (result != 0)
+            return result;
+        return Character.compare(sezione, altro.sezione);
     }
 
     private PercorsoDidattico percorso;
@@ -433,6 +453,7 @@ public class Classe implements Comparable<Classe>
     private String sede;
     private Docente cordinatore;
     private Set<Studente> elenco;
+    private ArrayList<Studente> rappresentanti;
     private int numeroStudenti;
     public static final int MAX_STUDENTI = 35;
 }

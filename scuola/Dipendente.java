@@ -49,7 +49,7 @@ public abstract class Dipendente extends Utente
     }
     
     //abstract method calcola lo stipendio
-    public abstract void calcolaStipendio();
+    protected abstract void calcolaStipendio();
 
     //abstract method ritorna lo stipendio lo stimpendio
     public abstract float getStipendio();

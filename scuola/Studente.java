@@ -5,6 +5,7 @@
  * */
 
 package scuola;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 
@@ -135,7 +136,7 @@ public class Studente extends Utente implements Comparable<Studente> {
     {
         this.matricola = ++Studente.studentiIscritti;
     }   
-
+    
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
@@ -146,26 +147,27 @@ public class Studente extends Utente implements Comparable<Studente> {
     {
         return this.rappresentante;
     }
-
+    
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
      * imposta lo stato di rappresentate a falso
-     */
+     *
     public void resetRappresentante()
     {
         this.rappresentante = false;
     }
-
+    */
     /**
      * @author Latino Francesco 
      * @author Serrone Fabio
      * imposta lo stato di rappresentante
-     */
+     *
     public void setRappresentante() 
     {
         this.rappresentante = true;
     }
+    */
 
     /**
      * @author Latino Francesco 
@@ -220,7 +222,6 @@ public class Studente extends Utente implements Comparable<Studente> {
             return Integer.compare(matricola, altroStudente.matricola);
     }
     
-    
 
      /**
      * @author Latino Francesco 
@@ -263,5 +264,5 @@ public class Studente extends Utente implements Comparable<Studente> {
     protected Classe classe; 
     private Pagella pagella;   
     private int matricola;
-    private boolean rappresentante;
+    protected boolean rappresentante;
 }

@@ -26,7 +26,7 @@ public class Eccezione_dataNonValida extends Exception
 		return "Data non valida!";
 	}
 
-	int g;
-	int m;
-	int a;
+	final int g;
+	final int m;
+	final int a;
 }

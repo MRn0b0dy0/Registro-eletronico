@@ -4,4 +4,18 @@ classi.csv
 docenti.csv
 insegnamenti.csv
 percorsi.csv
-.vscode
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Maven
+target/

@@ -130,7 +130,7 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
         int posizione = 0;
         boolean trovata = false;
         
-        for (int i=0; i<numMaterieInsegnate && posizione == 0 && trovata == false; i++) 
+        for (int i = 0; i<numMaterieInsegnate && posizione == 0 && !trovata; i++) 
         {
             if (this.materie[i].equals(material)) 
             {
@@ -187,11 +187,27 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
         this.numero_figli = numero_figli;
     }
 
+    public void setLivelloRetributivo(LivelloContrattuale.inquadramento livello, int nFilgi) throws Exception
+    {
+        try 
+        {
+            this.livello_retributivo = new LivelloContrattuale(livello);
+            this.numero_figli = nFilgi;
+        }
+        catch (Exception e) 
+        {
+            System.out.println("Non valido");
+        }
+    }
+
 
     @Override
-    public void calcolaStipendio() 
+    protected void calcolaStipendio() 
     {
-        this.stipendio = livello_retributivo.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie() + livello_retributivo.getDetrazioni(numero_figli) - livello_retributivo.getTasse();
+        float totale = LivelloContrattuale.getCompetenzeFisse() + livello_retributivo.getCompetenzeAccessorie();
+        float tasse = this.livello_retributivo.getTasse() * totale / 100;
+        tasse -= this.livello_retributivo.getDetrazioni(this.numero_figli);
+        this.stipendio = totale - tasse;
     }
     
     @Override
@@ -226,7 +242,8 @@ public class Docente extends Dipendente /*INIZIALIZZARE L'OGGETTO livello_retrib
     }    
 
     final static int MAX_MATERIE=10;
-    public enum tipoRuolo {TEORIA, LABORATORIO};
+    public enum tipoRuolo {TEORIA, LABORATORIO}
+    
     private tipoRuolo ruolo;
     private int numMaterieInsegnate;
     private String materie[] = new String[MAX_MATERIE];

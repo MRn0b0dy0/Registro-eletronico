@@ -14,6 +14,7 @@
 package scuola;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Scuola {
@@ -23,13 +24,35 @@ public class Scuola {
      */
     public static void main(String[] args) 
     {        
-        final int MAX_CLASSI = 20;               
+        final int MAX_CLASSI = 20;     
+        final int MAX_DOCENTI = 25;          
         Classe[] classiFormate = new Classe[MAX_CLASSI];  
         PercorsoDidattico[] percorsi = new PercorsoDidattico[MAX_CLASSI];
-
+        Docente[] docenti = new Docente[MAX_DOCENTI];
+        Insegnamento[] insegnamenti = new Insegnamento[MAX_CLASSI];
         /**** importa dati segreteria   *****/
         //crea l'elenco delle classi formate 
         int numeroClassi = 0;
+        int numeroDocenti = 0;
+        int numeroInsegnamenti = 0;
+        //Leggi i docenti
+        try 
+        {
+            numeroDocenti = GestioneFile.leggiOrganico("docenti.csv", docenti);
+        } 
+        catch (Exception e) 
+        {
+            Video.scriviStringa("File on trovato!"); Video.aCapo();
+        }
+
+        try 
+        {
+            numeroInsegnamenti = GestioneFile.leggiCattedre("insegnamenti.csv", docenti, insegnamenti);
+        } 
+        catch (Exception e) 
+        {
+            Video.scriviStringa("File on trovato!"); Video.aCapo();
+        }
 
         try 
         {
@@ -52,8 +75,6 @@ public class Scuola {
         {
             Video.scriviStringa("Errore di accesso al file\n"); 
         }
-        
-
 
         //carica percorsi didattici (indirizzi e relativi PIANI DI STUDIO) 
         int numPercorsi=0;
@@ -110,6 +131,9 @@ public class Scuola {
                 Video.scriviStringa("              R - CERCA studente\n");
                 Video.scriviStringa("              F - FORMAZIONE classi\n");
                 Video.scriviStringa("              N - Nomina rappresentante di classe\n");
+                Video.scriviStringa("              D - Nomina cordinatore di classe\n");
+                Video.scriviStringa("              M - Visualizza il cosiglio di classe\n");
+                Video.scriviStringa("              S - Stampa stipendi\n");
                 Video.scriviStringa("              X - FINE\n\n");
                 
                 Video.scriviStringa("              Scelta => ");
@@ -391,14 +415,13 @@ public class Scuola {
                                             break;
                                         }
 
-                                        for (var student : classiFormate[i].getElenco()) 
+                                        for (var student : classiFormate[i].getRappesentanti()) 
                                         {
-                                            if (student.isRappresentante())
-                                                student.resetRappresentante();    
+                                            classiFormate[i].resetRappresentante(student);
                                         }
                                         
-                                        classiFormate[i].getStudenteDaMatricola(matricola1).setRappresentante();
-                                        classiFormate[i].getStudenteDaMatricola(matricola2).setRappresentante();
+                                        classiFormate[i].setRappresentante(classiFormate[i].getStudenteDaMatricola(matricola1));
+                                        classiFormate[i].setRappresentante(classiFormate[i].getStudenteDaMatricola(matricola2));
                                         Video.scriviStringa("\nRappresentanti modificati!");
                                         /*
                                         Video.scriviStringa("\nInserire matricola dello studente da promuovere a rappresentante di classe:");
@@ -432,6 +455,145 @@ public class Scuola {
                                         Video.scriviStringa("Errore di input!");
                                     }
                                     break;   
+                                }
+                            case 'd':
+                            case 'D':
+                                {
+                                    try 
+                                    {
+                                        Video.scriviStringa("Inserire la classe del docente da elegere a cordinatore:\n");
+                                        Video.scriviStringa("Classe?");
+                                        int cla = Tastiera.leggiIntero();
+                                        Video.scriviStringa("Sezione?");
+                                        char sez = Tastiera.leggiCarattere();    
+                                        boolean trovata=false;
+                                        int classePos = 0;
+
+                                        for (int i=0; i<numeroClassi && !trovata; i++) 
+                                        {
+                                            if (classiFormate[i].equals(cla, sez)) 
+                                            {
+                                                classePos = i;
+                                                trovata = true;    
+                                            }
+                                        }
+                                        if (!trovata) 
+                                        {
+                                            Video.scriviStringa("Classe non formata!");
+                                            break;
+                                        }   
+
+                                        ArrayList<Docente> notValidList = new ArrayList<Docente>();
+                                        for (int i = 0; i < numeroInsegnamenti ; i++) 
+                                        {
+                                            if(insegnamenti[i].getClasse().equals(cla, sez) && !notValidList.contains(insegnamenti[i].getDocente())) 
+                                            {
+                                                Video.scriviStringa(insegnamenti[i].toString() + "\n");
+                                                notValidList.add(insegnamenti[i].getDocente());
+                                            }
+                                        }
+                                        
+                                        Video.scriviStringa("Inserire il codice fiscale del docente da rendere cordinatore: ");
+                                        String codiceFiscale = Tastiera.leggiStringa();
+                                        boolean ok = false;
+                                        for (int i = 0; i < numeroInsegnamenti; i++) 
+                                        {
+                                            if(insegnamenti[i].getClasse().equals(cla, sez)) 
+                                            {
+                                                if(insegnamenti[i].getDocente().getCodiceFiscale().equals(codiceFiscale)) 
+                                                {
+                                                    ok = true;
+                                                    insegnamenti[i].getClasse().setCordinatore(insegnamenti[i].getDocente());
+                                                    Video.scriviStringa("\nCordinatore modificato!");
+                                                }
+                                            }
+                                        }
+
+                                        if (!ok)
+                                        {
+                                            Video.scriviStringa("Docente non trovato!");
+                                        }
+                                    } 
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!" + e.getMessage());
+                                    }
+                                    break;
+                                }    
+                            case 'm':
+                            case 'M':
+                                {
+                                    try 
+                                    {
+                                        Video.scriviStringa("Inserire la classe per vedere il cdc:\n");
+                                        Video.scriviStringa("Classe?");
+                                        int cla = Tastiera.leggiIntero();
+                                        Video.scriviStringa("Sezione?");
+                                        char sez = Tastiera.leggiCarattere();
+                                        
+                                        boolean trovata = false;
+                                        int classePos = 0;
+                                        for (int i=0; i<numeroClassi && !trovata; i++) 
+                                        {
+                                            if (classiFormate[i].equals(cla, sez)) 
+                                            {
+                                                classePos = i;
+                                                trovata = true;    
+                                            }
+                                        }
+                                        if (!trovata) 
+                                        {
+                                            Video.scriviStringa("Classe non formata!");
+                                            break;
+                                        } 
+
+                                        Video.scriviStringa("\nCDC " + (char)(cla + '0') + sez + ":\n");
+                                        Video.scriviStringa("Componente docenti: \n");
+                                        ArrayList<Docente> notValidList = new ArrayList<Docente>();
+                                        for (int i = 0; i < numeroInsegnamenti; i++) 
+                                        {
+                                            if(insegnamenti[i].getClasse().equals(cla, sez) && !notValidList.contains(insegnamenti[i].getDocente())) 
+                                            {
+                                                Video.scriviStringa(insegnamenti[i].getDocente().getNome() + " " + insegnamenti[i].getDocente().getCognome());
+                                                if (insegnamenti[i].getDocente().equals(insegnamenti[i].getClasse().getCordinatore()))
+                                                    Video.scriviStringa(" (cordinatore)");
+                                                
+                                                notValidList.add(insegnamenti[i].getDocente());
+                                                Video.scriviStringa("\n");
+                                            } 
+                                        }
+
+                                        Video.scriviStringa("Rappresentanti alluni: \n");
+                                        for (Studente s : classiFormate[classePos].getRappesentanti()) 
+                                        {
+                                            Video.scriviStringa(s.getNome() + " " + s.getCognome() + "\n");
+                                        }
+                                    }
+                                    catch (Exception e) 
+                                    {
+                                        Video.scriviStringa("Errore di input!");
+                                    }                                    
+
+                                    break;
+                                }
+                            case 's':
+                            case 'S':
+                                {
+                                    try
+                                    {
+                                        Video.scriviStringa("Stipendi: \n");
+                                        for (int i = 0; i < numeroDocenti; i++) 
+                                        {
+                                            docenti[i].setLivelloRetributivo(LivelloContrattuale.inquadramento.DOCENTE_RUOLO, 3); 
+                                            docenti[i].calcolaStipendio();
+                                            Video.scriviStringa(docenti[i].getNome() + " " + docenti[i].getCognome() + ": " + docenti[i].getStipendio() + "\n");
+                                        }    
+                                    }
+                                    catch(Exception e)
+                                    {
+                                        Video.scriviStringa("Errore!");
+                                    }
+                                    break;
                                 }
                             case 'x': 
                             case 'X': 

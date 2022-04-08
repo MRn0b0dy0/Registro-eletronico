@@ -13,7 +13,7 @@ public class Utente
 {
     protected String codiceFiscale;
     protected String cognome;
-    protected Calendar data_nascita = new GregorianCalendar();
+    protected Calendar data_nascita;
     protected String nome;
     protected char sesso;
     protected String email;
@@ -131,9 +131,8 @@ public class Utente
                 return false;
         } else if (!nome.equals(other.nome))
             return false;
-        if (sesso != other.sesso)
-            return false;
-        return true;
+        
+        return sesso == other.sesso;
     }
 
     

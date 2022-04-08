@@ -137,7 +137,7 @@ public class Genitore extends Utente
             return false;
     }
 
-    private static int MAXFIGLI = 10;    
+    private static final int MAXFIGLI = 10;    
     public enum figura {PADRE, MADRE, TUTORE}
     private Studente[] figli = new Studente[MAXFIGLI];
     private figura rapporto; 
